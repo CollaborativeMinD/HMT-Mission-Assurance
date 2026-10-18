@@ -1,0 +1,33 @@
+{
+  "baseline_version": "2f049da236705662d079e6a1d8ddffd667a94d86",
+  "recorded_at": "2026-10-18T21:25:22.438321+00:00",
+  "scope": "Agent instruction discovery, README onboarding, and seven report screenshots.",
+  "requirements": [
+    {
+      "id": "REQ-ONBOARD-001",
+      "baseline_observation": "Agents.md exists; conventional AGENTS.md is absent.",
+      "acceptance_threshold": "AGENTS.md exists with identical instruction bytes; old filename and README link are replaced.",
+      "actual": "PASS",
+      "instruction_sha256": "cf85cb62ea637c2fb153e524203900491b7d5346a6db5a7d79e218bc78c5d56d",
+      "regression_witness": "All ten cumulative gates passed after the rename and documentation changes.",
+      "if_not_demonstrated": "Do not claim conventional instruction-file discovery is repaired."
+    },
+    {
+      "id": "REQ-DOCS-001",
+      "baseline_observation": "README has no report screenshots or badge row.",
+      "acceptance_threshold": "Purpose and bounds are explicit; all local README links resolve; seven real report-tab captures match source/image hashes.",
+      "actual": "PASS",
+      "local_links_checked": 20,
+      "screenshots": 7,
+      "capture_metadata_sha256": "b6e24e416499297de380b312cf4060522fb1fee1491e37cf0a6c82e3c40a294e",
+      "regression_witness": "Nine report browser cases and isolated installed-package verification passed.",
+      "if_not_demonstrated": "Do not present missing or stale captures as verified report views."
+    }
+  ],
+  "compatibility": "No public API or evaluation-contract change.",
+  "limits": [
+    "Local Python 3.12.14 verification only; hosted CI was not inferred.",
+    "Screenshots use synthetic bundled examples and do not establish gateway execution.",
+    "Badges link to the live workflow and declared project metadata; no static pass or coverage badge was added."
+  ]
+}

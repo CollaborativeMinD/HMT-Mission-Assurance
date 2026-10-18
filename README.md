@@ -1,10 +1,23 @@
-# hmt-mission-assurance
+# HMT Mission Assurance
 
-**Stop asking your AI agent whether your system is good. Give it a contract for determining what the evidence actually supports.**
+[![Verification workflow](https://github.com/CollaborativeMinD/HMT-Mission-Assurance/actions/workflows/verify.yml/badge.svg)](https://github.com/CollaborativeMinD/HMT-Mission-Assurance/actions/workflows/verify.yml)
+[![Python 3.12+](https://img.shields.io/badge/python-3.12%2B-3776AB?logo=python&logoColor=white)](pyproject.toml)
+[![License: Apache-2.0](https://img.shields.io/badge/license-Apache--2.0-blue)](LICENSE)
+[![MCP: local stdio](https://img.shields.io/badge/MCP-local_stdio-62dfbb)](#connect-mcp)
 
-One repository. One `SKILL.md`. Four read-only MCP tools. One typed evaluation contract.
+**Turn engineering claims and supplied execution records into a scoped, traceable assessment.**
 
-HMT Mission Assurance separates observed failures from untested claims, derives falsifiable requirements, and returns a delta report with evidence references and a traceability graph. It produces **evaluation findings, not a security certification**. A passing scoped assessment never authorizes deployment or promotion.
+HMT Mission Assurance helps an agent determine what the available evidence supports, what remains unknown, and what must be demonstrated next. It separates observed failures from untested claims and derives requirements with measurable acceptance thresholds and regression obligations.
+
+One agent skill. Four read-only MCP tools. A CLI that produces JSON, Markdown, and an interactive offline HTML report from the same typed evaluation contract.
+
+[Get started](#install) · [See the report](#report-views) · [Understand the bounds](#scope-and-bounds) · [Operator runbook](Runbook.md)
+
+## Purpose
+
+Use it for baseline reviews, change proposals, and engineering claims that need a clear evidence trail. Supply a specific claim, the baseline and environment it concerns, expected positive/negative/regression behavior, and selected existing execution records. Receive one primary disposition, all supporting findings, and requirements tied to the contract and evidence.
+
+The agent gathers evidence through its authorized host tools; the evaluator checks the supplied contract. Missing witnesses remain unknown. A matching result applies only to the declared scenarios. Findings never authorize deployment or certify security.
 
 ## Install
 
@@ -24,7 +37,7 @@ The skill installer creates `hmt-mission-assurance/SKILL.md` beneath `$CODEX_HOM
 hmt-mission-assurance install-skill --dest /path/to/your/agent/skills
 ```
 
-Repository access is required while this GitHub repository is private. A package-index release is **not** required for the Git install above; `uv tool install hmt-mission-assurance` is not claimed to work until a registry release exists. For a fixed release, pin a reviewed commit with `git+https://github.com/CollaborativeMinD/HMT-Mission-Assurance.git@COMMIT_SHA`.
+The Git URL is the supported installation path; a package-index release is not required. Use `uv tool install hmt-mission-assurance` only after a registry release exists. For reproducible installs, pin a reviewed commit with `git+https://github.com/CollaborativeMinD/HMT-Mission-Assurance.git@COMMIT_SHA`.
 
 ## Point an agent at a project
 
@@ -40,7 +53,48 @@ hmt-mission-assurance evaluate contract.json --out first-report
 # Exit 2 is expected: the starter intentionally lacks failure-mode witnesses.
 ```
 
-Open `first-report/delta-report.html`, or read its Markdown and JSON companions. The HTML is self-contained and makes no external requests. It provides Graph, Findings, Paths, Couplings, Requirements, Evidence, and Record tabs. Search nodes, adjust zoom, and select a node to inspect its connections. Paths are declared witness chains, not exhaustive execution paths.
+Open `first-report/delta-report.html`, or read `delta-report.md` and `evaluation.json` in the same directory. Exit `0` means the supplied scoped evidence matches, `2` means the evaluation has findings, and `3` means invalid input or destination. The starter's exit `2` is expected.
+
+## Report views
+
+The HTML report is self-contained and makes no external requests. Search the graph, adjust zoom, and select a node to inspect its connections. Seven tabs connect the assessment to its evidence and required next steps.
+
+The screenshots below are real Chromium captures of the bundled **synthetic examples**. They demonstrate the interface and submitted-record consistency; no gateway was executed.
+
+**Graph — follow claims, scenarios, evidence, and the disposition.** This view uses the [coupled example](examples/coupled.json), which declares an authorization-to-audit dependency.
+
+![Graph view of the synthetic coupled example, showing claims, their audit dependency, scenarios, evidence, and the scoped disposition.](docs/screenshots/graph.png)
+
+<details>
+<summary>Explore the other six report views</summary>
+
+**Findings — see what is missing and the conditions for resolving it.** The [before example](examples/before.json) lacks invalid-token and regression witnesses.
+
+![Findings view showing missing execution witnesses and their release conditions in the synthetic before example.](docs/screenshots/findings.png)
+
+**Paths — trace each declared scenario from expectation to observation and requirement.** These are declared witness chains, not exhaustive execution paths. The [gap example](examples/gap.json) contains a contradictory invalid-token observation.
+
+![Paths view connecting positive, negative, and regression scenarios to submitted observations, findings, and requirements in the synthetic gap example.](docs/screenshots/paths.png)
+
+**Couplings — inspect dependencies between claims and their witness state.** This uses the coupled example.
+
+![Couplings view showing the declared authorization-to-audit dependency and its witness state in the synthetic coupled example.](docs/screenshots/couplings.png)
+
+**Requirements — turn a gap into a measurable obligation.** This uses the gap example and retains the threshold, regression witnesses, and outcome if the change is unproved.
+
+![Requirements view showing an evidence-bound requirement, acceptance threshold, regression obligations, and no-promotion outcome in the synthetic gap example.](docs/screenshots/requirements.png)
+
+**Evidence — inspect source labels, hashes, validation checks, and raw submitted records.** Source labels remain inert. This uses the gap example.
+
+![Evidence view showing inert source labels, SHA-256 hashes, checks, and raw synthetic records in the gap example.](docs/screenshots/evidence.png)
+
+**Record — read the evidence basis, limitations, and complete structured record.** This uses the before example.
+
+![Record view showing the evidence basis, limitations, and structured record of the synthetic before example.](docs/screenshots/record.png)
+
+</details>
+
+Reproduce the screenshots with `uv run python scripts/capture_readme.py` after installing Playwright Chromium. [Capture metadata](docs/screenshots/captures.json) records the source report hashes, browser version, and viewport.
 
 ## Connect MCP
 
@@ -91,7 +145,15 @@ Exactly one primary disposition is selected. The explicit precedence is HOLD →
 
 Run `uv run python scripts/build_examples.py` to regenerate these illustrative contracts and reports. They are synthetic demonstrations, not a tested gateway product. See [examples](examples/) and [contract semantics](docs/contract.md).
 
-## What the evidence supports
+## Scope and bounds
+
+| The evaluator checks | What that does not establish |
+| --- | --- |
+| Strict contract fields, IDs, references, UTC timestamps, and size limits | That every relevant claim or failure mode was declared |
+| Submitted content hashes, baseline/environment binding, and freshness | Authenticity of the producer, source, or asserted execution |
+| Observed-versus-expected equality and positive/negative/regression obligations | Whole-project coverage, security, or probabilistic confidence |
+| Conflicts, blocking-invariant failures, and declared semantic contradictions | Undeclared semantics, causal improvement, or transfer to another domain |
+| Stable requirement IDs, evidence references, and regression obligations | Implementation of a proposed correction or permission to promote it |
 
 Pydantic v2 rejects unknown fields, coercions, unresolved references, duplicate IDs, invalid UTC timestamps, and bounded-size violations. The evaluator checks evidence content hashes, baseline/environment binding, freshness, case identity fields, and observed-versus-expected equality. Narrative-only records cannot satisfy execution obligations. Every derived requirement retains its baseline contract digest and available evidence references.
 
@@ -103,6 +165,7 @@ The public package contains the method, reference code, synthetic examples, and 
 
 ```bash
 uv sync --frozen
+uv run playwright install --with-deps chromium
 uv run ruff check .
 uv run ruff format --check .
 uv run pyrefly check
@@ -115,4 +178,4 @@ uv run python scripts/verify_install.py
 
 To regenerate the complete gate receipts and SQLite ledgers, run `uv run python scripts/record_validation.py` after installing Playwright Chromium. This reruns all gates and emits the scoped self-assessment. Run `uv run python scripts/release_manifest.py` last to classify and hash the finalized source artifacts.
 
-See [Runbook.md](Runbook.md) for operator procedures and [Agents.md](Agents.md) for authority and interception rules. Apache-2.0 covers only this published repository; excluded internal materials are not licensed by implication.
+See [Runbook.md](Runbook.md) for operator procedures and [AGENTS.md](AGENTS.md) for authority and interception rules. Apache-2.0 covers only this published repository; excluded internal materials are not licensed by implication.
