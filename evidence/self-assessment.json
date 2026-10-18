@@ -1,10 +1,10 @@
 {
   "evaluator_version": "0.1.0",
-  "contract_sha256": "7cb13c4c8045d8a8116ebfd7cecbcf22e8604436f2149d0058a7e6db39063cc9",
+  "contract_sha256": "b00e4a6838b2be11b8c8d6c2507b592eaa5ad8e0b4c78aa057d94b540450bbc8",
   "tool_id": "hmt-mission-assurance",
-  "baseline_version": "0.1.0+source.fbd210520421e7f6",
+  "baseline_version": "0.1.0+source.fa456ec41767d5fd",
   "scope": "Consistency of selected actual local pytest execution records and implementation obligations.",
-  "as_of": "2026-10-18T20:48:46.377084+00:00",
+  "as_of": "2026-10-18T21:24:32.583023+00:00",
   "primary_disposition": "STABLE_AS_IS",
   "reason_code": "SCOPED_WITNESSES_MATCH",
   "delta_required": false,

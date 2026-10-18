@@ -1,0 +1,61 @@
+{
+  "browser": "Chromium 156.0.8078.4",
+  "viewport": {
+    "width": 1440,
+    "height": 1320
+  },
+  "device_scale_factor": 1,
+  "synthetic_examples": true,
+  "external_requests": 0,
+  "captures": [
+    {
+      "view": "graph",
+      "source": "examples/coupled/delta-report.html",
+      "source_sha256": "28f459aa9ce471fab4d3ac9632e6ea0bcb0073eb14463230a88870864b567e0b",
+      "image": "docs/screenshots/graph.png",
+      "image_sha256": "b88f6b00157a081e5a7955e3d0b48d94a6a53a328455ae25a21b9fa47c124d27"
+    },
+    {
+      "view": "findings",
+      "source": "examples/before/delta-report.html",
+      "source_sha256": "90d20865451c082080344495ec70d059af29a4e2f37412a8b7aa8e2797633046",
+      "image": "docs/screenshots/findings.png",
+      "image_sha256": "74bdc6a2c76103f5774aef42a94387c587c55da8625978b71bc8247ac31d8dea"
+    },
+    {
+      "view": "paths",
+      "source": "examples/gap/delta-report.html",
+      "source_sha256": "c0e30e7e60e00700b0c5adaaa0d720b6f93dfaa0fb1877327a3cc4be78e219a2",
+      "image": "docs/screenshots/paths.png",
+      "image_sha256": "6d2bd7583dd59c19fa7f7878a5164a6f8f25a8784e47ad1f6207c8b68df054d8"
+    },
+    {
+      "view": "couplings",
+      "source": "examples/coupled/delta-report.html",
+      "source_sha256": "28f459aa9ce471fab4d3ac9632e6ea0bcb0073eb14463230a88870864b567e0b",
+      "image": "docs/screenshots/couplings.png",
+      "image_sha256": "933d2a4c4c96216c21d6aa348f371430f63b84b20ec4daf39b04d7cae5a93cfd"
+    },
+    {
+      "view": "requirements",
+      "source": "examples/gap/delta-report.html",
+      "source_sha256": "c0e30e7e60e00700b0c5adaaa0d720b6f93dfaa0fb1877327a3cc4be78e219a2",
+      "image": "docs/screenshots/requirements.png",
+      "image_sha256": "fd52a161d4e9ed8bb689aba647dc0939f6c00172ad5314c3631a6f338924ad12"
+    },
+    {
+      "view": "evidence",
+      "source": "examples/gap/delta-report.html",
+      "source_sha256": "c0e30e7e60e00700b0c5adaaa0d720b6f93dfaa0fb1877327a3cc4be78e219a2",
+      "image": "docs/screenshots/evidence.png",
+      "image_sha256": "db0c78dbe4b5c01d64426c3183199b91caef23f3c69f06af0ea7a36eb0904b9b"
+    },
+    {
+      "view": "record",
+      "source": "examples/before/delta-report.html",
+      "source_sha256": "90d20865451c082080344495ec70d059af29a4e2f37412a8b7aa8e2797633046",
+      "image": "docs/screenshots/record.png",
+      "image_sha256": "1f45752cbedc33e8eb72ece54a388f4d92cf573dfb521bdb15634c3407a5a466"
+    }
+  ]
+}

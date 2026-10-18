@@ -218,5 +218,115 @@
     "evidence_ref": "evidence/forward-skill.json",
     "evidence_hash_reason": "f881c6572dd05289b2eb2cee44e4ea0c876c18c4419dc9ed12b1e0a78909e320",
     "sub_agent_task_attestation": "forward_skill: raw starter + standalone skill; correctly retained missing evidence and synthetic limits"
+  },
+  {
+    "timestamp": "2026-10-18T21:24:09.413465+00:00",
+    "task": "source-sha256:fa456ec41767d5fd68d2b2fbe469f94ed666d7cb7f93dfd5273c11fd2b52243b",
+    "gate_id": "G-LINT-001",
+    "requirement": "docs/requirements.md",
+    "status": "PASS",
+    "evidence_ref": "evidence/logs/G-LINT-001-82b3e6a6c090a576.log",
+    "evidence_hash_reason": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18",
+    "sub_agent_task_attestation": "not delegated"
+  },
+  {
+    "timestamp": "2026-10-18T21:24:09.472533+00:00",
+    "task": "source-sha256:fa456ec41767d5fd68d2b2fbe469f94ed666d7cb7f93dfd5273c11fd2b52243b",
+    "gate_id": "G-FORMAT-002",
+    "requirement": "docs/requirements.md",
+    "status": "PASS",
+    "evidence_ref": "evidence/logs/G-FORMAT-002-21a61ae0f7b0971d.log",
+    "evidence_hash_reason": "21a61ae0f7b0971d38a01e6a0b3b4e7d53ef9ca8a0e23eb8c6ab3742fbb5f1c7",
+    "sub_agent_task_attestation": "not delegated"
+  },
+  {
+    "timestamp": "2026-10-18T21:24:10.331452+00:00",
+    "task": "source-sha256:fa456ec41767d5fd68d2b2fbe469f94ed666d7cb7f93dfd5273c11fd2b52243b",
+    "gate_id": "G-TYPE-003",
+    "requirement": "docs/requirements.md",
+    "status": "PASS",
+    "evidence_ref": "evidence/logs/G-TYPE-003-d9694df053a415df.log",
+    "evidence_hash_reason": "d9694df053a415df19e993bae8110fc3c5e0931ac7d7b22f4a214198aa9378f5",
+    "sub_agent_task_attestation": "not delegated"
+  },
+  {
+    "timestamp": "2026-10-18T21:24:10.800436+00:00",
+    "task": "source-sha256:fa456ec41767d5fd68d2b2fbe469f94ed666d7cb7f93dfd5273c11fd2b52243b",
+    "gate_id": "G-ARCH-004",
+    "requirement": "docs/requirements.md",
+    "status": "PASS",
+    "evidence_ref": "evidence/logs/G-ARCH-004-b72a7153d54145d1.log",
+    "evidence_hash_reason": "b72a7153d54145d1103a43f392a80e6feff763af381a81e95a41a3aedc67130c",
+    "sub_agent_task_attestation": "not delegated"
+  },
+  {
+    "timestamp": "2026-10-18T21:24:11.164950+00:00",
+    "task": "source-sha256:fa456ec41767d5fd68d2b2fbe469f94ed666d7cb7f93dfd5273c11fd2b52243b",
+    "gate_id": "G-EXAMPLE-005",
+    "requirement": "docs/requirements.md",
+    "status": "PASS",
+    "evidence_ref": "evidence/logs/G-EXAMPLE-005-73cdbe88be01bc99.log",
+    "evidence_hash_reason": "73cdbe88be01bc993b547d8a2c604d2b24dbdfdb5718887dbfec3bda784e922b",
+    "sub_agent_task_attestation": "not delegated"
+  },
+  {
+    "timestamp": "2026-10-18T21:24:18.231142+00:00",
+    "task": "source-sha256:fa456ec41767d5fd68d2b2fbe469f94ed666d7cb7f93dfd5273c11fd2b52243b",
+    "gate_id": "G-TEST-006",
+    "requirement": "docs/requirements.md",
+    "status": "PASS",
+    "evidence_ref": "evidence/logs/G-TEST-006-ff4ee038a698fa80.log",
+    "evidence_hash_reason": "ff4ee038a698fa802b9bf14ae4d64005890eb585195300bf3c2bbe2ee838c874",
+    "sub_agent_task_attestation": "not delegated"
+  },
+  {
+    "timestamp": "2026-10-18T21:24:26.221602+00:00",
+    "task": "source-sha256:fa456ec41767d5fd68d2b2fbe469f94ed666d7cb7f93dfd5273c11fd2b52243b",
+    "gate_id": "G-VISUAL-007",
+    "requirement": "docs/requirements.md",
+    "status": "PASS",
+    "evidence_ref": "evidence/logs/G-VISUAL-007-05312aa3848ffaca.log",
+    "evidence_hash_reason": "05312aa3848ffacad7d45ff02547b220412c58eb5dca71c4dfe481bc4bfe1eaf",
+    "sub_agent_task_attestation": "not delegated"
+  },
+  {
+    "timestamp": "2026-10-18T21:24:27.658308+00:00",
+    "task": "source-sha256:fa456ec41767d5fd68d2b2fbe469f94ed666d7cb7f93dfd5273c11fd2b52243b",
+    "gate_id": "G-BUILD-008",
+    "requirement": "docs/requirements.md",
+    "status": "PASS",
+    "evidence_ref": "evidence/logs/G-BUILD-008-cf00d9bdcd20fbd1.log",
+    "evidence_hash_reason": "cf00d9bdcd20fbd1aa44cdafb054fadce6dc8b1d48bbcae665cfe2b0c70b620d",
+    "sub_agent_task_attestation": "not delegated"
+  },
+  {
+    "timestamp": "2026-10-18T21:24:32.181582+00:00",
+    "task": "source-sha256:fa456ec41767d5fd68d2b2fbe469f94ed666d7cb7f93dfd5273c11fd2b52243b",
+    "gate_id": "G-INSTALL-009",
+    "requirement": "docs/requirements.md",
+    "status": "PASS",
+    "evidence_ref": "evidence/logs/G-INSTALL-009-f834dff364297990.log",
+    "evidence_hash_reason": "f834dff3642979902698dd1c2f654ee958c126404968eefe4307bc52ea50decf",
+    "sub_agent_task_attestation": "not delegated"
+  },
+  {
+    "timestamp": "2026-10-18T21:24:32.667607+00:00",
+    "task": "source-sha256:fa456ec41767d5fd68d2b2fbe469f94ed666d7cb7f93dfd5273c11fd2b52243b",
+    "gate_id": "G-SELF-010",
+    "requirement": "docs/requirements.md",
+    "status": "PASS",
+    "evidence_ref": "evidence/logs/G-SELF-010-6cb93b63627dc1ed.log",
+    "evidence_hash_reason": "6cb93b63627dc1edefac2b2366b6690398003ad0eaea4d464fe0b3a99ba1812f",
+    "sub_agent_task_attestation": "not delegated"
+  },
+  {
+    "timestamp": "2026-10-18T21:24:32.677367+00:00",
+    "task": "skill-forward-check",
+    "gate_id": "G-SKILL-011",
+    "requirement": "REQ-CLAIMS-010",
+    "status": "PASS",
+    "evidence_ref": "evidence/forward-skill.json",
+    "evidence_hash_reason": "f881c6572dd05289b2eb2cee44e4ea0c876c18c4419dc9ed12b1e0a78909e320",
+    "sub_agent_task_attestation": "forward_skill: raw starter + standalone skill; correctly retained missing evidence and synthetic limits"
   }
 ]
