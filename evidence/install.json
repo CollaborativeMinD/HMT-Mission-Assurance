@@ -1,0 +1,9 @@
+{
+  "status": "PASS",
+  "version": "0.1.0",
+  "isolated_uv_install": true,
+  "skill_bytes_match": true,
+  "installed_mcp_tool_count": 4,
+  "installed_html_rendering": "PASS",
+  "python": "3.12.14"
+}

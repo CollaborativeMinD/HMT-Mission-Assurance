@@ -1,0 +1,63 @@
+[project]
+name = "hmt-mission-assurance"
+version = "0.1.0"
+description = "A read-only evidence contract for mission assurance findings and falsifiable requirements"
+readme = "README.md"
+requires-python = ">=3.12"
+license = "Apache-2.0"
+authors = [{name = "Charles Austin / Terminal State Systems"}]
+dependencies = [
+    "mcp>=1.30,<2",
+    "pydantic>=2.14,<3",
+]
+
+[project.urls]
+Repository = "https://github.com/CollaborativeMinD/HMT-Mission-Assurance"
+
+[project.scripts]
+hmt-mission-assurance = "hmt_mission_assurance.cli:main"
+hmt-mission-assurance-mcp = "hmt_mission_assurance.server:main"
+
+[build-system]
+requires = ["hatchling>=1.27,<2"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/hmt_mission_assurance"]
+
+[tool.hatch.build.targets.wheel.force-include]
+"SKILL.md" = "hmt_mission_assurance/data/SKILL.md"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "--strict-markers --strict-config"
+
+[tool.coverage.run]
+branch = true
+source = ["hmt_mission_assurance"]
+
+[tool.coverage.report]
+fail_under = 90
+show_missing = true
+
+[tool.ruff]
+line-length = 110
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM"]
+ignore = ["E501"]
+
+[tool.pyrefly]
+project-includes = ["src", "tests", "scripts"]
+search-path = ["src", "scripts"]
+
+[dependency-groups]
+dev = [
+    "build>=1.6.1",
+    "playwright>=1.64.0",
+    "pyrefly>=1.4.0",
+    "pytest>=9.1.1",
+    "pytest-cov>=7.1.0",
+    "ruff>=0.17.1",
+    "types-jsonschema>=4.26.0.20261006",
+]

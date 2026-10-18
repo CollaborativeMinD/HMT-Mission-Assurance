@@ -1,0 +1,4 @@
+interface:
+  display_name: "HMT Mission Assurance"
+  short_description: "Determine what engineering evidence actually supports"
+  default_prompt: "Use $hmt-mission-assurance to evaluate this project and derive evidence-bound requirements."

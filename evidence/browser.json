@@ -1,0 +1,87 @@
+{
+  "status": "PASS",
+  "browser": "153.0.8010.0",
+  "checks": [
+    {
+      "source": "delta-report.html",
+      "viewport_width": 1440,
+      "nodes": 10,
+      "edges": 10,
+      "all_tabs": "PASS",
+      "network_requests": 0,
+      "injection": "PASS"
+    },
+    {
+      "source": "delta-report.html",
+      "viewport_width": 390,
+      "nodes": 10,
+      "edges": 10,
+      "all_tabs": "PASS",
+      "network_requests": 0,
+      "injection": "PASS"
+    },
+    {
+      "source": "delta-report.html",
+      "viewport_width": 1440,
+      "nodes": 10,
+      "edges": 10,
+      "all_tabs": "PASS",
+      "network_requests": 0,
+      "injection": "PASS"
+    },
+    {
+      "source": "delta-report.html",
+      "viewport_width": 390,
+      "nodes": 10,
+      "edges": 10,
+      "all_tabs": "PASS",
+      "network_requests": 0,
+      "injection": "PASS"
+    },
+    {
+      "source": "delta-report.html",
+      "viewport_width": 1440,
+      "nodes": 8,
+      "edges": 7,
+      "all_tabs": "PASS",
+      "network_requests": 0,
+      "injection": "PASS"
+    },
+    {
+      "source": "delta-report.html",
+      "viewport_width": 390,
+      "nodes": 8,
+      "edges": 7,
+      "all_tabs": "PASS",
+      "network_requests": 0,
+      "injection": "PASS"
+    },
+    {
+      "source": "delta-report.html",
+      "viewport_width": 1440,
+      "nodes": 16,
+      "edges": 17,
+      "all_tabs": "PASS",
+      "network_requests": 0,
+      "injection": "PASS"
+    },
+    {
+      "source": "delta-report.html",
+      "viewport_width": 390,
+      "nodes": 16,
+      "edges": 17,
+      "all_tabs": "PASS",
+      "network_requests": 0,
+      "injection": "PASS"
+    },
+    {
+      "source": "injection.html",
+      "viewport_width": 1440,
+      "nodes": 10,
+      "edges": 10,
+      "all_tabs": "PASS",
+      "network_requests": 0,
+      "injection": "PASS"
+    }
+  ]
+}

@@ -1,0 +1,337 @@
+{
+  "evaluator_version": "0.1.0",
+  "contract_sha256": "7cb13c4c8045d8a8116ebfd7cecbcf22e8604436f2149d0058a7e6db39063cc9",
+  "tool_id": "hmt-mission-assurance",
+  "baseline_version": "0.1.0+source.fbd210520421e7f6",
+  "scope": "Consistency of selected actual local pytest execution records and implementation obligations.",
+  "as_of": "2026-10-18T20:48:46.377084+00:00",
+  "primary_disposition": "STABLE_AS_IS",
+  "reason_code": "SCOPED_WITNESSES_MATCH",
+  "delta_required": false,
+  "admission_authorized": false,
+  "security_certification": false,
+  "evidence_basis": "Consistency of caller-supplied execution records against a caller-declared contract. Hashes verify content integrity, not producer identity, execution authenticity, or truth.",
+  "limitations": [
+    "Local Python 3.12.14; hosted CI is a separate witness.",
+    "Producer assertions are locally generated and not independently authenticated.",
+    "No whole-project security, causal improvement, or generalization claim.",
+    "No independent execution or producer authentication is performed.",
+    "No inference of completeness outside declared claims, scenarios, and couplings.",
+    "A matching witness establishes neither causal attribution nor generalization."
+  ],
+  "evidence_checks": [
+    {
+      "evidence_id": "EV-S-CONTRACT-negative",
+      "scenario_id": "S-CONTRACT-negative",
+      "usable": true,
+      "reason_code": "USABLE_SUBMITTED_WITNESS",
+      "actual": "passed"
+    },
+    {
+      "evidence_id": "EV-S-CONTRACT-positive",
+      "scenario_id": "S-CONTRACT-positive",
+      "usable": true,
+      "reason_code": "USABLE_SUBMITTED_WITNESS",
+      "actual": "passed"
+    },
+    {
+      "evidence_id": "EV-S-CONTRACT-regression",
+      "scenario_id": "S-CONTRACT-regression",
+      "usable": true,
+      "reason_code": "USABLE_SUBMITTED_WITNESS",
+      "actual": "passed"
+    },
+    {
+      "evidence_id": "EV-S-READONLY-negative",
+      "scenario_id": "S-READONLY-negative",
+      "usable": true,
+      "reason_code": "USABLE_SUBMITTED_WITNESS",
+      "actual": "passed"
+    },
+    {
+      "evidence_id": "EV-S-READONLY-positive",
+      "scenario_id": "S-READONLY-positive",
+      "usable": true,
+      "reason_code": "USABLE_SUBMITTED_WITNESS",
+      "actual": "passed"
+    },
+    {
+      "evidence_id": "EV-S-READONLY-regression",
+      "scenario_id": "S-READONLY-regression",
+      "usable": true,
+      "reason_code": "USABLE_SUBMITTED_WITNESS",
+      "actual": "passed"
+    },
+    {
+      "evidence_id": "EV-S-REPORT-negative",
+      "scenario_id": "S-REPORT-negative",
+      "usable": true,
+      "reason_code": "USABLE_SUBMITTED_WITNESS",
+      "actual": "passed"
+    },
+    {
+      "evidence_id": "EV-S-REPORT-positive",
+      "scenario_id": "S-REPORT-positive",
+      "usable": true,
+      "reason_code": "USABLE_SUBMITTED_WITNESS",
+      "actual": "passed"
+    },
+    {
+      "evidence_id": "EV-S-REPORT-regression",
+      "scenario_id": "S-REPORT-regression",
+      "usable": true,
+      "reason_code": "USABLE_SUBMITTED_WITNESS",
+      "actual": "passed"
+    }
+  ],
+  "findings": [],
+  "requirements": [],
+  "coverage": {
+    "declared_scenarios": 9,
+    "exercised_scenarios": 9,
+    "satisfied_scenarios": 9,
+    "missing_mode_obligations": 0,
+    "basis": "declared_scenarios_only"
+  },
+  "graph": {
+    "nodes": [
+      {
+        "id": "claim:C-CONTRACT",
+        "kind": "claim",
+        "label": "Typed input and evidence checks in selected cases"
+      },
+      {
+        "id": "claim:C-READONLY",
+        "kind": "claim",
+        "label": "Read-only MCP and repeatable evaluation in selected cases"
+      },
+      {
+        "id": "claim:C-REPORT",
+        "kind": "claim",
+        "label": "Faithful graph and inert untrusted text in selected cases"
+      },
+      {
+        "id": "coupling:K-REPORT-INPUT",
+        "kind": "coupling",
+        "label": "Untrusted contract strings remain inert in rendered reports."
+      },
+      {
+        "id": "disposition:primary",
+        "kind": "disposition",
+        "label": "STABLE_AS_IS"
+      },
+      {
+        "id": "evidence:EV-S-CONTRACT-negative",
+        "kind": "evidence",
+        "label": "evidence/junit.xml:test_dangling_evidence"
+      },
+      {
+        "id": "evidence:EV-S-CONTRACT-positive",
+        "kind": "evidence",
+        "label": "evidence/junit.xml:test_scoped_stability"
+      },
+      {
+        "id": "evidence:EV-S-CONTRACT-regression",
+        "kind": "evidence",
+        "label": "evidence/junit.xml:test_requirement_identity_and_evidence_binding"
+      },
+      {
+        "id": "evidence:EV-S-READONLY-negative",
+        "kind": "evidence",
+        "label": "evidence/junit.xml:test_source_reference_never_fetches"
+      },
+      {
+        "id": "evidence:EV-S-READONLY-positive",
+        "kind": "evidence",
+        "label": "evidence/junit.xml:test_stdio_protocol"
+      },
+      {
+        "id": "evidence:EV-S-READONLY-regression",
+        "kind": "evidence",
+        "label": "evidence/junit.xml:test_replay_and_cross_call_isolation"
+      },
+      {
+        "id": "evidence:EV-S-REPORT-negative",
+        "kind": "evidence",
+        "label": "evidence/junit.xml:test_html_and_markdown_injection"
+      },
+      {
+        "id": "evidence:EV-S-REPORT-positive",
+        "kind": "evidence",
+        "label": "evidence/junit.xml:test_graph_fidelity_and_machine_record"
+      },
+      {
+        "id": "evidence:EV-S-REPORT-regression",
+        "kind": "evidence",
+        "label": "evidence/junit.xml:test_full_findings_and_requirements_visible"
+      },
+      {
+        "id": "scenario:S-CONTRACT-negative",
+        "kind": "scenario",
+        "label": "test_dangling_evidence"
+      },
+      {
+        "id": "scenario:S-CONTRACT-positive",
+        "kind": "scenario",
+        "label": "test_scoped_stability"
+      },
+      {
+        "id": "scenario:S-CONTRACT-regression",
+        "kind": "scenario",
+        "label": "test_requirement_identity_and_evidence_binding"
+      },
+      {
+        "id": "scenario:S-READONLY-negative",
+        "kind": "scenario",
+        "label": "test_source_reference_never_fetches"
+      },
+      {
+        "id": "scenario:S-READONLY-positive",
+        "kind": "scenario",
+        "label": "test_stdio_protocol"
+      },
+      {
+        "id": "scenario:S-READONLY-regression",
+        "kind": "scenario",
+        "label": "test_replay_and_cross_call_isolation"
+      },
+      {
+        "id": "scenario:S-REPORT-negative",
+        "kind": "scenario",
+        "label": "test_html_and_markdown_injection"
+      },
+      {
+        "id": "scenario:S-REPORT-positive",
+        "kind": "scenario",
+        "label": "test_graph_fidelity_and_machine_record"
+      },
+      {
+        "id": "scenario:S-REPORT-regression",
+        "kind": "scenario",
+        "label": "test_full_findings_and_requirements_visible"
+      }
+    ],
+    "edges": [
+      {
+        "source": "claim:C-CONTRACT",
+        "target": "coupling:K-REPORT-INPUT",
+        "relation": "depends"
+      },
+      {
+        "source": "claim:C-CONTRACT",
+        "target": "disposition:primary",
+        "relation": "scoped_match"
+      },
+      {
+        "source": "claim:C-CONTRACT",
+        "target": "scenario:S-CONTRACT-negative",
+        "relation": "negative"
+      },
+      {
+        "source": "claim:C-CONTRACT",
+        "target": "scenario:S-CONTRACT-positive",
+        "relation": "positive"
+      },
+      {
+        "source": "claim:C-CONTRACT",
+        "target": "scenario:S-CONTRACT-regression",
+        "relation": "regression"
+      },
+      {
+        "source": "claim:C-READONLY",
+        "target": "disposition:primary",
+        "relation": "scoped_match"
+      },
+      {
+        "source": "claim:C-READONLY",
+        "target": "scenario:S-READONLY-negative",
+        "relation": "negative"
+      },
+      {
+        "source": "claim:C-READONLY",
+        "target": "scenario:S-READONLY-positive",
+        "relation": "positive"
+      },
+      {
+        "source": "claim:C-READONLY",
+        "target": "scenario:S-READONLY-regression",
+        "relation": "regression"
+      },
+      {
+        "source": "claim:C-REPORT",
+        "target": "disposition:primary",
+        "relation": "scoped_match"
+      },
+      {
+        "source": "claim:C-REPORT",
+        "target": "scenario:S-REPORT-negative",
+        "relation": "negative"
+      },
+      {
+        "source": "claim:C-REPORT",
+        "target": "scenario:S-REPORT-positive",
+        "relation": "positive"
+      },
+      {
+        "source": "claim:C-REPORT",
+        "target": "scenario:S-REPORT-regression",
+        "relation": "regression"
+      },
+      {
+        "source": "coupling:K-REPORT-INPUT",
+        "target": "claim:C-REPORT",
+        "relation": "receives"
+      },
+      {
+        "source": "coupling:K-REPORT-INPUT",
+        "target": "scenario:S-REPORT-negative",
+        "relation": "witness"
+      },
+      {
+        "source": "scenario:S-CONTRACT-negative",
+        "target": "evidence:EV-S-CONTRACT-negative",
+        "relation": "submitted"
+      },
+      {
+        "source": "scenario:S-CONTRACT-positive",
+        "target": "evidence:EV-S-CONTRACT-positive",
+        "relation": "submitted"
+      },
+      {
+        "source": "scenario:S-CONTRACT-regression",
+        "target": "evidence:EV-S-CONTRACT-regression",
+        "relation": "submitted"
+      },
+      {
+        "source": "scenario:S-READONLY-negative",
+        "target": "evidence:EV-S-READONLY-negative",
+        "relation": "submitted"
+      },
+      {
+        "source": "scenario:S-READONLY-positive",
+        "target": "evidence:EV-S-READONLY-positive",
+        "relation": "submitted"
+      },
+      {
+        "source": "scenario:S-READONLY-regression",
+        "target": "evidence:EV-S-READONLY-regression",
+        "relation": "submitted"
+      },
+      {
+        "source": "scenario:S-REPORT-negative",
+        "target": "evidence:EV-S-REPORT-negative",
+        "relation": "submitted"
+      },
+      {
+        "source": "scenario:S-REPORT-positive",
+        "target": "evidence:EV-S-REPORT-positive",
+        "relation": "submitted"
+      },
+      {
+        "source": "scenario:S-REPORT-regression",
+        "target": "evidence:EV-S-REPORT-regression",
+        "relation": "submitted"
+      }
+    ]
+  }
+}

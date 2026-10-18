@@ -1,0 +1,34 @@
+{
+  "response": {
+    "agent_role": "mission_assurance_blue_team",
+    "task_owned": "hmt_mission_assurance_public_reference_implementation",
+    "implementation": [
+      "One skill, one typed contract, four read-only stdio MCP tools, and deterministic reports",
+      "Synthetic before/gap/after examples and scoped self-assessment",
+      "Local validation, isolated install, browser tests, and provenance inventory"
+    ],
+    "risks": [
+      "Producer authenticity and undeclared failure modes remain outside the implemented proof boundary",
+      "Public installation requires public repository visibility or GitHub access; no registry release is claimed",
+      "Hosted CI status must be established from its actual workflow run"
+    ],
+    "assumptions": [
+      "Submitted contracts define a bounded scope and callers independently govern expectations",
+      "Reference notebook and internal source artifacts are excluded from publication"
+    ],
+    "follow_up_instructions": [
+      "Use the documented Git install and connect a local stdio MCP host",
+      "Evaluate existing records; commission independent verification where required"
+    ],
+    "validation_status": "pass",
+    "artifact_refs": [
+      "SKILL.md",
+      "schemas/evaluation-contract.schema.json",
+      "evidence/validation-summary.json",
+      "evidence/validation.sqlite",
+      "evidence/self-assessment.json",
+      "evidence/artifact-manifest.json"
+    ],
+    "provenance_id": "prov_hmt_mission_assurance_v0_1_0"
+  }
+}

@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-IFt7FWCAXCjFwSyz/VutEQekoo8mF2DsE2JgfflkVqM='; style-src 'unsafe-inline'; img-src 'none'; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<title>HMT • Mission Assurance Delta Report</title>
+<style>
+:root{color-scheme:dark;--bg:#0c1420;--card:#131f2e;--fg:#e6edf7;--muted:#a1b0c5;--line:#2b3e54;--accent:#62dfbb}
+*{box-sizing:border-box}body{overflow-wrap:anywhere;margin:0;font:15px/1.5 system-ui,sans-serif;background:var(--bg);color:var(--fg)}
+header,main{max-width:1500px;margin:auto;padding:28px}header{padding-bottom:8px}.eyebrow{color:var(--accent);letter-spacing:.14em;font-size:12px;font-weight:700}h1{font-size:34px;line-height:1.2;margin:10px 0}p{margin:10px 0}.muted{color:var(--muted)}.notice{border-left:3px solid var(--accent);padding:10px 16px;background:var(--card)}
+.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:22px 0}.metric{background:var(--card);padding:16px;border:1px solid var(--line);border-radius:9px}.metric strong{font-size:28px;display:block}.metric span{color:var(--muted)}
+nav{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0}button,input,select{font:inherit}button{border:1px solid var(--line);background:var(--card);color:var(--fg);padding:9px 15px;border-radius:7px;cursor:pointer}button[aria-selected=true]{background:var(--accent);color:#08261d}button:focus-visible,input:focus-visible{outline:3px solid #ffe08a}input[type=search]{padding:10px;background:var(--card);border:1px solid var(--line);border-radius:6px;color:var(--fg);min-width:280px}.toolbar{display:flex;gap:16px;align-items:center;flex-wrap:wrap;margin:12px 0}
+[hidden]{display:none!important}.panel{border:1px solid var(--line);border-radius:9px;padding:18px;background:var(--card);overflow:auto}table{border-collapse:collapse;width:100%;font-size:13px}th,td{text-align:left;border-bottom:1px solid var(--line);padding:12px;vertical-align:top;white-space:pre-wrap;overflow-wrap:anywhere}th{color:var(--muted)}.graph-layout{display:grid;grid-template-columns:minmax(0,1fr) 290px;gap:16px}.canvas{height:590px;overflow:auto;background:#0c1420;border-radius:7px;border:1px solid var(--line)}svg{display:block}svg text{fill:#edf5ff;font:12px ui-monospace,monospace}svg .node{cursor:pointer}svg .edge{stroke:#607d9b;stroke-width:1.2;fill:none;opacity:.5}aside{font-size:13px;overflow-wrap:anywhere}pre{white-space:pre-wrap;overflow-wrap:anywhere;font-size:12px;color:var(--muted)}.detail{border-top:1px solid var(--line);padding-top:12px}.legend{font-size:12px;color:var(--muted)}.disposition{font:700 15px ui-monospace,monospace;color:#ffe08a}.badge{display:inline-block;background:#24364b;padding:3px 8px;border-radius:4px}footer{color:var(--muted);font-size:12px;margin-top:20px}
+@media(max-width:800px){header,main{padding:18px}.metrics{grid-template-columns:repeat(2,1fr)}.graph-layout{grid-template-columns:1fr}.canvas{height:450px}h1{font-size:27px}}
+</style></head><body>
+<header><div class="eyebrow">HMT / EVIDENCE BEFORE CONFIDENCE</div><h1>Mission Assurance Delta Report</h1><p id="subject" class="muted"></p><p id="disposition" class="disposition"></p><p class="notice">Evaluation findings only. No security certification. No implementation promotion is authorized.</p></header>
+<main><div id="metrics" class="metrics"></div><p id="scope"></p><p class="muted">Counts apply only to declared scenarios. Source records are supplied by the caller; their authenticity is not independently verified.</p>
+<nav role="tablist" aria-label="Evaluation views" id="tabs"></nav>
+<section id="graph" role="tabpanel" class="panel"><div class="toolbar"><label>Find a node <input id="search" type="search" placeholder="Search IDs, labels, or types"></label><label>Zoom <input id="zoom" type="range" min="40" max="160" value="80"></label><button id="reset">Reset</button><span id="graph-count" class="muted"></span></div><p class="legend">Claims → scenarios → submitted evidence → findings → requirements. Couplings are declared dependencies. Select any node to inspect all connected edges.</p><div class="graph-layout"><div class="canvas"><svg id="network" role="img" aria-label="Complete declared evaluation graph"></svg></div><aside><h3>Node details</h3><p id="node-detail">Select a node to inspect its meaning and connections.</p><div id="node-edges" class="detail"></div></aside></div></section>
+<section id="findings" role="tabpanel" class="panel" hidden></section><section id="paths" role="tabpanel" class="panel" hidden></section><section id="couplings" role="tabpanel" class="panel" hidden></section><section id="requirements" role="tabpanel" class="panel" hidden></section><section id="evidence" role="tabpanel" class="panel" hidden></section><section id="record" role="tabpanel" class="panel" hidden></section>
+<noscript>JavaScript is required for the interactive views. Read the companion Markdown or JSON report.</noscript><footer id="footer"></footer>
+</main><script type="application/json" id="report-data">{"contract":{"as_of":"2026-10-18T20:00:00Z","baseline_version":"demo-v2","claims":[{"code_refs":["illustrative/gateway.py:authorize"],"id":"C-TOKEN","scenarios":[{"blocking":false,"description":"Valid token","expected":"allowed","id":"S-VALID","mode":"positive","semantic":false},{"blocking":false,"description":"Invalid token","expected":"denied","id":"S-INVALID","mode":"negative","semantic":false},{"blocking":false,"description":"Previously valid token still passes","expected":"allowed","id":"S-REGRESS","mode":"regression","semantic":false}],"statement":"Valid tokens pass; invalid tokens are denied in these cases."}],"couplings":[],"environment_id":"synthetic-demo","evidence":[{"baseline_version":"demo-v2","captured_at":"2026-10-18T19:59:00Z","content":"{\"actual\":\"allowed\",\"case_id\":\"demo/S-VALID\",\"method\":\"executed\",\"producer\":\"synthetic-example-builder\",\"run_id\":\"SYNTHETIC-RUN\",\"scenario_id\":\"S-VALID\"}","environment_id":"synthetic-demo","id":"EV-0","scenario_id":"S-VALID","sha256":"90a33e16e07affce7f49de90c2bf41cd31f553ac9462450c8f4dd56310db4133","source_ref":"synthetic-demo:S-VALID","tool_id":"example-gateway"},{"baseline_version":"demo-v2","captured_at":"2026-10-18T19:59:00Z","content":"{\"actual\":\"denied\",\"case_id\":\"demo/S-INVALID\",\"method\":\"executed\",\"producer\":\"synthetic-example-builder\",\"run_id\":\"SYNTHETIC-RUN\",\"scenario_id\":\"S-INVALID\"}","environment_id":"synthetic-demo","id":"EV-1","scenario_id":"S-INVALID","sha256":"3f6a6ee80daea8e5ead410c75cf3456b6c18c8780aa8827c6a21c46c099f9e89","source_ref":"synthetic-demo:S-INVALID","tool_id":"example-gateway"},{"baseline_version":"demo-v2","captured_at":"2026-10-18T19:59:00Z","content":"{\"actual\":\"allowed\",\"case_id\":\"demo/S-REGRESS\",\"method\":\"executed\",\"producer\":\"synthetic-example-builder\",\"run_id\":\"SYNTHETIC-RUN\",\"scenario_id\":\"S-REGRESS\"}","environment_id":"synthetic-demo","id":"EV-2","scenario_id":"S-REGRESS","sha256":"111ec6d54ecd57644741e65edd2ffe9be14e2e47007718298ba35930693cf864","source_ref":"synthetic-demo:S-REGRESS","tool_id":"example-gateway"}],"limitations":["Illustrative synthetic records; no gateway was executed.","No general security claim."],"max_age_seconds":3600,"schema_version":"1.0","scope":"Synthetic example: token acceptance/rejection and preservation of valid behavior.","tool_id":"example-gateway"},"evaluation":{"admission_authorized":false,"as_of":"2026-10-18T20:00:00Z","baseline_version":"demo-v2","contract_sha256":"1523a00c262800129c6d7b6740cc3788345b9e0cacc1b584ead68fd17a2f7884","coverage":{"basis":"declared_scenarios_only","declared_scenarios":3,"exercised_scenarios":3,"missing_mode_obligations":0,"satisfied_scenarios":3},"delta_required":false,"evaluator_version":"0.1.0","evidence_basis":"Consistency of caller-supplied execution records against a caller-declared contract. Hashes verify content integrity, not producer identity, execution authenticity, or truth.","evidence_checks":[{"actual":"allowed","evidence_id":"EV-0","reason_code":"USABLE_SUBMITTED_WITNESS","scenario_id":"S-VALID","usable":true},{"actual":"denied","evidence_id":"EV-1","reason_code":"USABLE_SUBMITTED_WITNESS","scenario_id":"S-INVALID","usable":true},{"actual":"allowed","evidence_id":"EV-2","reason_code":"USABLE_SUBMITTED_WITNESS","scenario_id":"S-REGRESS","usable":true}],"findings":[],"graph":{"edges":[{"relation":"scoped_match","source":"claim:C-TOKEN","target":"disposition:primary"},{"relation":"negative","source":"claim:C-TOKEN","target":"scenario:S-INVALID"},{"relation":"regression","source":"claim:C-TOKEN","target":"scenario:S-REGRESS"},{"relation":"positive","source":"claim:C-TOKEN","target":"scenario:S-VALID"},{"relation":"submitted","source":"scenario:S-INVALID","target":"evidence:EV-1"},{"relation":"submitted","source":"scenario:S-REGRESS","target":"evidence:EV-2"},{"relation":"submitted","source":"scenario:S-VALID","target":"evidence:EV-0"}],"nodes":[{"id":"claim:C-TOKEN","kind":"claim","label":"Valid tokens pass; invalid tokens are denied in these cases."},{"id":"disposition:primary","kind":"disposition","label":"STABLE_AS_IS"},{"id":"evidence:EV-0","kind":"evidence","label":"synthetic-demo:S-VALID"},{"id":"evidence:EV-1","kind":"evidence","label":"synthetic-demo:S-INVALID"},{"id":"evidence:EV-2","kind":"evidence","label":"synthetic-demo:S-REGRESS"},{"id":"scenario:S-INVALID","kind":"scenario","label":"Invalid token"},{"id":"scenario:S-REGRESS","kind":"scenario","label":"Previously valid token still passes"},{"id":"scenario:S-VALID","kind":"scenario","label":"Valid token"}]},"limitations":["Illustrative synthetic records; no gateway was executed.","No general security claim.","No independent execution or producer authentication is performed.","No inference of completeness outside declared claims, scenarios, and couplings.","A matching witness establishes neither causal attribution nor generalization."],"primary_disposition":"STABLE_AS_IS","reason_code":"SCOPED_WITNESSES_MATCH","requirements":[],"scope":"Synthetic example: token acceptance/rejection and preservation of valid behavior.","security_certification":false,"tool_id":"example-gateway"}}</script><script>"use strict";
+(() => {
+  const data = JSON.parse(document.getElementById("report-data").textContent);
+  const c = data.contract, e = data.evaluation;
+  const byId = id => document.getElementById(id);
+  const el = (tag, text) => { const n = document.createElement(tag); if (text !== undefined) n.textContent = text; return n; };
+  const pretty = v => typeof v === "object" ? JSON.stringify(v, null, 2) : String(v ?? "");
+  byId("subject").textContent = `${c.tool_id} / ${c.baseline_version} · ${c.environment_id} · ${c.as_of}`;
+  byId("disposition").textContent = `${e.primary_disposition} · ${e.reason_code}`;
+  byId("scope").textContent = c.scope;
+  byId("footer").textContent = `Contract SHA-256: ${e.contract_sha256} · Evaluator ${e.evaluator_version} · Offline report; no external requests.`;
+  const values = [[e.coverage.declared_scenarios,"Declared scenarios"],[e.coverage.exercised_scenarios,"Exercised"],[e.coverage.satisfied_scenarios,"Satisfied"],[e.findings.length,"Findings"]];
+  for (const [value,label] of values) { const n = el("div"); n.className="metric"; n.append(el("strong",value),el("span",label)); byId("metrics").append(n); }
+  function table(id, headers, rows) {
+    const t = el("table"), h = el("tr"), head = el("thead"), body = el("tbody");
+    headers.forEach(label => h.append(el("th",label))); head.append(h); t.append(head);
+    rows.forEach(row => { const tr=el("tr"); row.forEach(v => tr.append(el("td",pretty(v)))); body.append(tr); });
+    t.append(body); byId(id).append(t); if (!rows.length) byId(id).append(el("p","No entries in this declared scope."));
+  }
+  const tabs = ["graph","findings","paths","couplings","requirements","evidence","record"];
+  for (const [index,id] of tabs.entries()) {
+    const b = el("button",id[0].toUpperCase()+id.slice(1)); b.id=`tab-${id}`; b.role="tab";
+    b.setAttribute("aria-controls",id); b.setAttribute("aria-selected",String(index===0)); byId(id).setAttribute("aria-labelledby",b.id);
+    b.addEventListener("click",() => { tabs.forEach(t => { byId(t).hidden=t!==id; byId(`tab-${t}`).setAttribute("aria-selected",String(t===id)); }); });
+    b.addEventListener("keydown",event => { if (["ArrowLeft","ArrowRight"].includes(event.key)) { const next=(index+(event.key==="ArrowRight"?1:-1)+tabs.length)%tabs.length; const button=byId(`tab-${tabs[next]}`); button.click(); button.focus(); event.preventDefault(); } });
+    byId("tabs").append(b);
+  }
+  table("findings",["Finding / reason","Disposition","Expected","Observed","Evidence","Hypothesis","Release condition"],e.findings.map(f=>[`${f.id}\n${f.reason_code}`,f.disposition,f.expected,f.observed,f.evidence_refs,f.hypothesis,f.release_condition]));
+  const paths=[];
+  for (const claim of c.claims) for (const s of claim.scenarios) {
+    const checks=e.evidence_checks.filter(w=>w.scenario_id===s.id), fs=e.findings.filter(f=>f.scenario_id===s.id);
+    paths.push([claim.id,s.id,s.mode,s.expected,checks.map(w=>`${w.evidence_id}: ${w.actual ?? w.reason_code}`),fs.map(f=>f.id),e.requirements.filter(r=>fs.some(f=>f.id===r.finding_id)).map(r=>r.id)]);
+  }
+  table("paths",["Claim","Scenario","Mode","Expected","Submitted observations","Findings","Requirements"],paths);
+  table("couplings",["Coupling","Source claim","Target claim","Witness scenario","Meaning","Witness state"],c.couplings.map(k=>[k.id,k.source_claim,k.target_claim,k.scenario_id,k.description,e.evidence_checks.filter(w=>w.scenario_id===k.scenario_id)]));
+  table("requirements",["Requirement","Finding","Kind","Baseline evidence","Threshold","Regression witnesses","Proposed change","If not demonstrated"],e.requirements.map(r=>[r.id,r.finding_id,r.kind,r.baseline_evidence_refs,r.acceptance_threshold,r.regression_witness,r.proposed_change,r.if_not_demonstrated]));
+  table("evidence",["Evidence","Source (inert)","Captured UTC","Hash","Check","Raw submitted record"],c.evidence.map(w=>[w.id,w.source_ref,w.captured_at,w.sha256,e.evidence_checks.find(x=>x.evidence_id===w.id),w.content]));
+  byId("record").append(el("h2","Evidence basis and limits"),el("p",e.evidence_basis),el("pre",pretty(e.limitations)),el("h2","Complete structured record"),el("pre",pretty(data)));
+  const svg=byId("network"), ns="http://www.w3.org/2000/svg";
+  const kinds=["claim","coupling","scenario","evidence","finding","requirement","disposition"].filter(kind=>e.graph.nodes.some(n=>n.kind===kind));
+  const colors=["#315b77","#574780","#255f59","#455b35","#7c4838","#665b30","#374572"];
+  const counters={}, positions=new Map();
+  for (const n of e.graph.nodes) { const col=kinds.indexOf(n.kind), row=counters[n.kind]??0; counters[n.kind]=row+1; positions.set(n.id,{x:col*255+25,y:row*76+40}); }
+  const width=kinds.length*255+30, height=Math.max(240,...Object.values(counters).map(n=>n*76+90));
+  svg.setAttribute("viewBox",`0 0 ${width} ${height}`);
+  const svgEl=(tag,attrs,text)=>{const n=document.createElementNS(ns,tag); for(const [k,v] of Object.entries(attrs)) n.setAttribute(k,String(v)); if(text!==undefined)n.textContent=text; return n;};
+  const defs=svgEl("defs",{}),marker=svgEl("marker",{id:"arrow",viewBox:"0 0 10 10",refX:9,refY:5,markerWidth:6,markerHeight:6,orient:"auto-start-reverse"});
+  marker.append(svgEl("path",{d:"M0 0 L10 5 L0 10 Z",fill:"#8fa9bc"}));defs.append(marker);svg.append(defs);
+  function select(n) {
+    byId("node-detail").textContent=`${n.id}\n${n.label}`; byId("node-edges").replaceChildren();
+    const connected=e.graph.edges.filter(x=>x.source===n.id||x.target===n.id);
+    for(const edge of connected) byId("node-edges").append(el("p",`${edge.source} → ${edge.target} [${edge.relation}]`));
+    for(const edge of svg.querySelectorAll(".edge")) { const active=edge.dataset.source===n.id||edge.dataset.target===n.id; edge.style.opacity=active?"1":"0.1"; edge.style.stroke=active?"#62dfbb":"#607d9b"; }
+  }
+  const edgeNodes=[];
+  for (const edge of e.graph.edges) {
+    const a=positions.get(edge.source),b=positions.get(edge.target);
+    const path=svgEl("path",{d:`M${a.x+202},${a.y+22} C${a.x+235},${a.y+22} ${b.x-35},${b.y+22} ${b.x},${b.y+22}`,class:"edge","marker-end":"url(#arrow)"});
+    path.dataset.source=edge.source;path.dataset.target=edge.target;path.append(svgEl("title",{},`${edge.source} → ${edge.target}: ${edge.relation}`));svg.append(path);edgeNodes.push({edge,path});
+  }
+  const nodeGroups=[];
+  for (const n of e.graph.nodes) {
+    const p=positions.get(n.id),g=svgEl("g",{class:"node",tabindex:0,role:"button","aria-label":`${n.id}: ${n.label}`});
+    g.append(svgEl("rect",{x:p.x,y:p.y,width:202,height:46,rx:7,fill:colors[kinds.indexOf(n.kind)],stroke:"#7a95ab"}));
+    const shortId=n.id.split(":")[1];
+    g.append(svgEl("text",{x:p.x+9,y:p.y+18},n.kind.toUpperCase()),svgEl("text",{x:p.x+9,y:p.y+35},shortId.length>26?shortId.slice(0,25)+"…":shortId),svgEl("title",{},`${n.id}\n${n.label}`));
+    g.addEventListener("click",()=>select(n));g.addEventListener("keydown",event=>{if(event.key==="Enter"||event.key===" "){select(n);event.preventDefault();}});svg.append(g);nodeGroups.push({n,g});
+  }
+  function filter() {
+    const query=byId("search").value.toLowerCase(),visible=new Set();
+    for(const {n,g} of nodeGroups){const show=`${n.id} ${n.kind} ${n.label}`.toLowerCase().includes(query);g.style.display=show?"":"none";if(show)visible.add(n.id);}
+    for(const {edge,path} of edgeNodes)path.style.display=visible.has(edge.source)&&visible.has(edge.target)?"":"none";
+    byId("graph-count").textContent=`${visible.size}/${e.graph.nodes.length} nodes · ${e.graph.edges.length} total edges`;
+  }
+  function zoom(){const scale=Number(byId("zoom").value)/100;svg.setAttribute("width",width*scale);svg.setAttribute("height",height*scale);}
+  byId("search").addEventListener("input",filter);byId("zoom").addEventListener("input",zoom);
+  byId("reset").addEventListener("click",()=>{byId("search").value="";byId("zoom").value="80";for(const {path} of edgeNodes){path.style.opacity=".5";path.style.stroke="#607d9b";}filter();zoom();});
+  byId("zoom").value=String(Math.max(40,Math.min(90,Math.floor(byId("network").parentElement.clientWidth/width*100))));
+  filter();zoom();
+})();
+</script></body></html>

@@ -1,0 +1,190 @@
+{
+  "evaluator_version": "0.1.0",
+  "contract_sha256": "21d58148b3a41969c350dd3d465a00128252a4fe017a6256baec52b83d616729",
+  "tool_id": "example-gateway",
+  "baseline_version": "demo-v1",
+  "scope": "Synthetic example: token acceptance/rejection and preservation of valid behavior.",
+  "as_of": "2026-10-18T20:00:00Z",
+  "primary_disposition": "UPDATE_REQUIRED",
+  "reason_code": "OBSERVATION_CONTRADICTS_CONTRACT",
+  "delta_required": true,
+  "admission_authorized": false,
+  "security_certification": false,
+  "evidence_basis": "Consistency of caller-supplied execution records against a caller-declared contract. Hashes verify content integrity, not producer identity, execution authenticity, or truth.",
+  "limitations": [
+    "Illustrative synthetic records; no gateway was executed.",
+    "No general security claim.",
+    "No independent execution or producer authentication is performed.",
+    "No inference of completeness outside declared claims, scenarios, and couplings.",
+    "A matching witness establishes neither causal attribution nor generalization."
+  ],
+  "evidence_checks": [
+    {
+      "evidence_id": "EV-0",
+      "scenario_id": "S-VALID",
+      "usable": true,
+      "reason_code": "USABLE_SUBMITTED_WITNESS",
+      "actual": "allowed"
+    },
+    {
+      "evidence_id": "EV-1",
+      "scenario_id": "S-INVALID",
+      "usable": true,
+      "reason_code": "USABLE_SUBMITTED_WITNESS",
+      "actual": "allowed"
+    },
+    {
+      "evidence_id": "EV-2",
+      "scenario_id": "S-REGRESS",
+      "usable": true,
+      "reason_code": "USABLE_SUBMITTED_WITNESS",
+      "actual": "allowed"
+    }
+  ],
+  "findings": [
+    {
+      "id": "F-d336a115e3effc1e1ed4",
+      "claim_id": "C-TOKEN",
+      "scenario_id": "S-INVALID",
+      "disposition": "UPDATE_REQUIRED",
+      "reason_code": "OBSERVATION_CONTRADICTS_CONTRACT",
+      "expected": "denied",
+      "observed": "allowed",
+      "evidence_refs": [
+        "EV-1"
+      ],
+      "hypothesis": "Unconfirmed: the implementation or evidence collection may omit this obligation.",
+      "release_condition": "Supply current, consistent execution witnesses satisfying: denied"
+    }
+  ],
+  "requirements": [
+    {
+      "id": "REQ-d336a115e3effc1e1ed4",
+      "finding_id": "F-d336a115e3effc1e1ed4",
+      "kind": "remediate",
+      "baseline_contract_ref": "21d58148b3a41969c350dd3d465a00128252a4fe017a6256baec52b83d616729",
+      "baseline_evidence_refs": [
+        "EV-1"
+      ],
+      "acceptance_threshold": "Supply current, consistent execution witnesses satisfying: denied",
+      "regression_witness": [
+        "S-REGRESS"
+      ],
+      "proposed_change": "Propose a bounded correction, reproduce the discrepancy, and rerun affected obligations.",
+      "if_not_demonstrated": "preserve_baseline_and_do_not_promote"
+    }
+  ],
+  "coverage": {
+    "declared_scenarios": 3,
+    "exercised_scenarios": 3,
+    "satisfied_scenarios": 2,
+    "missing_mode_obligations": 0,
+    "basis": "declared_scenarios_only"
+  },
+  "graph": {
+    "nodes": [
+      {
+        "id": "claim:C-TOKEN",
+        "kind": "claim",
+        "label": "Valid tokens pass; invalid tokens are denied in these cases."
+      },
+      {
+        "id": "disposition:primary",
+        "kind": "disposition",
+        "label": "UPDATE_REQUIRED"
+      },
+      {
+        "id": "evidence:EV-0",
+        "kind": "evidence",
+        "label": "synthetic-demo:S-VALID"
+      },
+      {
+        "id": "evidence:EV-1",
+        "kind": "evidence",
+        "label": "synthetic-demo:S-INVALID"
+      },
+      {
+        "id": "evidence:EV-2",
+        "kind": "evidence",
+        "label": "synthetic-demo:S-REGRESS"
+      },
+      {
+        "id": "finding:F-d336a115e3effc1e1ed4",
+        "kind": "finding",
+        "label": "OBSERVATION_CONTRADICTS_CONTRACT"
+      },
+      {
+        "id": "requirement:REQ-d336a115e3effc1e1ed4",
+        "kind": "requirement",
+        "label": "Supply current, consistent execution witnesses satisfying: denied"
+      },
+      {
+        "id": "scenario:S-INVALID",
+        "kind": "scenario",
+        "label": "Invalid token"
+      },
+      {
+        "id": "scenario:S-REGRESS",
+        "kind": "scenario",
+        "label": "Previously valid token still passes"
+      },
+      {
+        "id": "scenario:S-VALID",
+        "kind": "scenario",
+        "label": "Valid token"
+      }
+    ],
+    "edges": [
+      {
+        "source": "claim:C-TOKEN",
+        "target": "scenario:S-INVALID",
+        "relation": "negative"
+      },
+      {
+        "source": "claim:C-TOKEN",
+        "target": "scenario:S-REGRESS",
+        "relation": "regression"
+      },
+      {
+        "source": "claim:C-TOKEN",
+        "target": "scenario:S-VALID",
+        "relation": "positive"
+      },
+      {
+        "source": "evidence:EV-1",
+        "target": "finding:F-d336a115e3effc1e1ed4",
+        "relation": "basis"
+      },
+      {
+        "source": "finding:F-d336a115e3effc1e1ed4",
+        "target": "disposition:primary",
+        "relation": "UPDATE_REQUIRED"
+      },
+      {
+        "source": "finding:F-d336a115e3effc1e1ed4",
+        "target": "requirement:REQ-d336a115e3effc1e1ed4",
+        "relation": "derive"
+      },
+      {
+        "source": "scenario:S-INVALID",
+        "target": "evidence:EV-1",
+        "relation": "submitted"
+      },
+      {
+        "source": "scenario:S-INVALID",
+        "target": "finding:F-d336a115e3effc1e1ed4",
+        "relation": "finding"
+      },
+      {
+        "source": "scenario:S-REGRESS",
+        "target": "evidence:EV-2",
+        "relation": "submitted"
+      },
+      {
+        "source": "scenario:S-VALID",
+        "target": "evidence:EV-0",
+        "relation": "submitted"
+      }
+    ]
+  }
+}

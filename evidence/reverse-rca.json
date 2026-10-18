@@ -1,0 +1,72 @@
+[
+  {
+    "timestamp": "2026-10-18T20:48:36.213592+00:00",
+    "incident_id": "RRCA-001",
+    "checkpoint": "build metadata",
+    "observed_state": "Editable build rejected absent README",
+    "causal_evidence": "pyproject readme field resolved before README creation; Created required public README; isolated wheel build and install passed",
+    "validation_test": "G-BUILD-008 / G-INSTALL-009",
+    "disposition": "INVESTIGATION_COMPLETE / SOLUTION_CANDIDATE_APPLIED",
+    "sub_agent_task_attestation": "not delegated"
+  },
+  {
+    "timestamp": "2026-10-18T20:48:36.213592+00:00",
+    "incident_id": "RRCA-002",
+    "checkpoint": "report encoding",
+    "observed_state": "Injection regression detected raw markup in Markdown JSON fence",
+    "causal_evidence": "reports.py serialized untrusted labels without delimiter escaping; executable HTML already escaped; Added shared JSON delimiter escaping; preserved parsed meaning and passed browser injection checks",
+    "validation_test": "G-TEST-006 / G-VISUAL-007",
+    "disposition": "INVESTIGATION_COMPLETE / SOLUTION_CANDIDATE_APPLIED",
+    "sub_agent_task_attestation": "not delegated"
+  },
+  {
+    "timestamp": "2026-10-18T20:48:36.213592+00:00",
+    "incident_id": "RRCA-003",
+    "checkpoint": "strict typing and bounds",
+    "observed_state": "Optional values and overlong helper functions failed static gates",
+    "causal_evidence": "pyrefly diagnostics and AST physical-line measurement; Guarded optional values, typed selection/rows, decomposed helpers, and configured script import root",
+    "validation_test": "G-TYPE-003 / G-ARCH-004",
+    "disposition": "INVESTIGATION_COMPLETE / SOLUTION_CANDIDATE_APPLIED",
+    "sub_agent_task_attestation": "not delegated"
+  },
+  {
+    "timestamp": "2026-10-18T20:48:36.213592+00:00",
+    "incident_id": "RRCA-004",
+    "checkpoint": "browser acquisition",
+    "observed_state": "Playwright CDN archives could not be decoded in this environment",
+    "causal_evidence": "Downloaded archives lacked ZIP directory; no browser runtime was initially present; Used a temporary bundled Chromium binary from npm; no browser binary shipped in repository",
+    "validation_test": "G-VISUAL-007",
+    "disposition": "INVESTIGATION_COMPLETE / SOLUTION_CANDIDATE_APPLIED",
+    "sub_agent_task_attestation": "not delegated"
+  },
+  {
+    "timestamp": "2026-10-18T20:48:36.213592+00:00",
+    "incident_id": "RRCA-005",
+    "checkpoint": "mobile rendering",
+    "observed_state": "Phone page scrollWidth 504 exceeded innerWidth 390",
+    "causal_evidence": "Browser measured long text overflowing its wrapping container; Added overflow-wrap:anywhere; desktop/mobile and injection cases passed",
+    "validation_test": "G-VISUAL-007",
+    "disposition": "INVESTIGATION_COMPLETE / SOLUTION_CANDIDATE_APPLIED",
+    "sub_agent_task_attestation": "not delegated"
+  },
+  {
+    "timestamp": "2026-10-18T20:48:36.213592+00:00",
+    "incident_id": "RRCA-006",
+    "checkpoint": "browser test harness",
+    "observed_state": "Single-process browser closed when the last page/context was closed",
+    "causal_evidence": "Serverless Chromium lifecycle failed on creation of next page after page close; Reused one page across cases; kept fresh page navigation and per-case assertions",
+    "validation_test": "G-VISUAL-007",
+    "disposition": "INVESTIGATION_COMPLETE / SOLUTION_CANDIDATE_APPLIED",
+    "sub_agent_task_attestation": "not delegated"
+  },
+  {
+    "timestamp": "2026-10-18T20:48:36.213592+00:00",
+    "incident_id": "RRCA-007",
+    "checkpoint": "tool command discovery",
+    "observed_state": "Shell could not find installed executable",
+    "causal_evidence": "uv tool reported /root/.local/bin absent from PATH; wheel installation itself succeeded; Verified absolute executable path in isolated installation and documented uv tool update-shell",
+    "validation_test": "G-INSTALL-009",
+    "disposition": "INVESTIGATION_COMPLETE / SOLUTION_CANDIDATE_APPLIED",
+    "sub_agent_task_attestation": "not delegated"
+  }
+]

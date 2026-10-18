@@ -1,0 +1,245 @@
+{
+  "evaluator_version": "0.1.0",
+  "contract_sha256": "71dff9e67be04c5cff030834b9a17aebfbe784f5e10672f0065db7e275b326a6",
+  "tool_id": "example-gateway",
+  "baseline_version": "demo-v2",
+  "scope": "Synthetic example: token acceptance/rejection and preservation of valid behavior.",
+  "as_of": "2026-10-18T20:00:00Z",
+  "primary_disposition": "STABLE_AS_IS",
+  "reason_code": "SCOPED_WITNESSES_MATCH",
+  "delta_required": false,
+  "admission_authorized": false,
+  "security_certification": false,
+  "evidence_basis": "Consistency of caller-supplied execution records against a caller-declared contract. Hashes verify content integrity, not producer identity, execution authenticity, or truth.",
+  "limitations": [
+    "Illustrative synthetic records; no gateway was executed.",
+    "No general security claim.",
+    "No independent execution or producer authentication is performed.",
+    "No inference of completeness outside declared claims, scenarios, and couplings.",
+    "A matching witness establishes neither causal attribution nor generalization."
+  ],
+  "evidence_checks": [
+    {
+      "evidence_id": "EV-0",
+      "scenario_id": "S-VALID",
+      "usable": true,
+      "reason_code": "USABLE_SUBMITTED_WITNESS",
+      "actual": "allowed"
+    },
+    {
+      "evidence_id": "EV-1",
+      "scenario_id": "S-INVALID",
+      "usable": true,
+      "reason_code": "USABLE_SUBMITTED_WITNESS",
+      "actual": "denied"
+    },
+    {
+      "evidence_id": "EV-2",
+      "scenario_id": "S-REGRESS",
+      "usable": true,
+      "reason_code": "USABLE_SUBMITTED_WITNESS",
+      "actual": "allowed"
+    },
+    {
+      "evidence_id": "EV-3",
+      "scenario_id": "A-S-VALID",
+      "usable": true,
+      "reason_code": "USABLE_SUBMITTED_WITNESS",
+      "actual": "recorded"
+    },
+    {
+      "evidence_id": "EV-4",
+      "scenario_id": "A-S-INVALID",
+      "usable": true,
+      "reason_code": "USABLE_SUBMITTED_WITNESS",
+      "actual": "recorded"
+    },
+    {
+      "evidence_id": "EV-5",
+      "scenario_id": "A-S-REGRESS",
+      "usable": true,
+      "reason_code": "USABLE_SUBMITTED_WITNESS",
+      "actual": "recorded"
+    }
+  ],
+  "findings": [],
+  "requirements": [],
+  "coverage": {
+    "declared_scenarios": 6,
+    "exercised_scenarios": 6,
+    "satisfied_scenarios": 6,
+    "missing_mode_obligations": 0,
+    "basis": "declared_scenarios_only"
+  },
+  "graph": {
+    "nodes": [
+      {
+        "id": "claim:C-AUDIT",
+        "kind": "claim",
+        "label": "Authorization outcomes retain audit records in these cases."
+      },
+      {
+        "id": "claim:C-TOKEN",
+        "kind": "claim",
+        "label": "Valid tokens pass; invalid tokens are denied in these cases."
+      },
+      {
+        "id": "coupling:K-AUDIT",
+        "kind": "coupling",
+        "label": "Denied token outcomes reach the audit seam."
+      },
+      {
+        "id": "disposition:primary",
+        "kind": "disposition",
+        "label": "STABLE_AS_IS"
+      },
+      {
+        "id": "evidence:EV-0",
+        "kind": "evidence",
+        "label": "synthetic-demo:S-VALID"
+      },
+      {
+        "id": "evidence:EV-1",
+        "kind": "evidence",
+        "label": "synthetic-demo:S-INVALID"
+      },
+      {
+        "id": "evidence:EV-2",
+        "kind": "evidence",
+        "label": "synthetic-demo:S-REGRESS"
+      },
+      {
+        "id": "evidence:EV-3",
+        "kind": "evidence",
+        "label": "synthetic-demo:A-S-VALID"
+      },
+      {
+        "id": "evidence:EV-4",
+        "kind": "evidence",
+        "label": "synthetic-demo:A-S-INVALID"
+      },
+      {
+        "id": "evidence:EV-5",
+        "kind": "evidence",
+        "label": "synthetic-demo:A-S-REGRESS"
+      },
+      {
+        "id": "scenario:A-S-INVALID",
+        "kind": "scenario",
+        "label": "Invalid token"
+      },
+      {
+        "id": "scenario:A-S-REGRESS",
+        "kind": "scenario",
+        "label": "Previously valid token still passes"
+      },
+      {
+        "id": "scenario:A-S-VALID",
+        "kind": "scenario",
+        "label": "Valid token"
+      },
+      {
+        "id": "scenario:S-INVALID",
+        "kind": "scenario",
+        "label": "Invalid token"
+      },
+      {
+        "id": "scenario:S-REGRESS",
+        "kind": "scenario",
+        "label": "Previously valid token still passes"
+      },
+      {
+        "id": "scenario:S-VALID",
+        "kind": "scenario",
+        "label": "Valid token"
+      }
+    ],
+    "edges": [
+      {
+        "source": "claim:C-AUDIT",
+        "target": "disposition:primary",
+        "relation": "scoped_match"
+      },
+      {
+        "source": "claim:C-AUDIT",
+        "target": "scenario:A-S-INVALID",
+        "relation": "negative"
+      },
+      {
+        "source": "claim:C-AUDIT",
+        "target": "scenario:A-S-REGRESS",
+        "relation": "regression"
+      },
+      {
+        "source": "claim:C-AUDIT",
+        "target": "scenario:A-S-VALID",
+        "relation": "positive"
+      },
+      {
+        "source": "claim:C-TOKEN",
+        "target": "coupling:K-AUDIT",
+        "relation": "depends"
+      },
+      {
+        "source": "claim:C-TOKEN",
+        "target": "disposition:primary",
+        "relation": "scoped_match"
+      },
+      {
+        "source": "claim:C-TOKEN",
+        "target": "scenario:S-INVALID",
+        "relation": "negative"
+      },
+      {
+        "source": "claim:C-TOKEN",
+        "target": "scenario:S-REGRESS",
+        "relation": "regression"
+      },
+      {
+        "source": "claim:C-TOKEN",
+        "target": "scenario:S-VALID",
+        "relation": "positive"
+      },
+      {
+        "source": "coupling:K-AUDIT",
+        "target": "claim:C-AUDIT",
+        "relation": "receives"
+      },
+      {
+        "source": "coupling:K-AUDIT",
+        "target": "scenario:A-S-INVALID",
+        "relation": "witness"
+      },
+      {
+        "source": "scenario:A-S-INVALID",
+        "target": "evidence:EV-4",
+        "relation": "submitted"
+      },
+      {
+        "source": "scenario:A-S-REGRESS",
+        "target": "evidence:EV-5",
+        "relation": "submitted"
+      },
+      {
+        "source": "scenario:A-S-VALID",
+        "target": "evidence:EV-3",
+        "relation": "submitted"
+      },
+      {
+        "source": "scenario:S-INVALID",
+        "target": "evidence:EV-1",
+        "relation": "submitted"
+      },
+      {
+        "source": "scenario:S-REGRESS",
+        "target": "evidence:EV-2",
+        "relation": "submitted"
+      },
+      {
+        "source": "scenario:S-VALID",
+        "target": "evidence:EV-0",
+        "relation": "submitted"
+      }
+    ]
+  }
+}

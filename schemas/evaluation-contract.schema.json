@@ -1,0 +1,296 @@
+{
+  "$defs": {
+    "Claim": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "statement": {
+          "maxLength": 2000,
+          "minLength": 1,
+          "title": "Statement",
+          "type": "string"
+        },
+        "code_refs": {
+          "items": {
+            "maxLength": 2000,
+            "minLength": 1,
+            "type": "string"
+          },
+          "maxItems": 16,
+          "minItems": 1,
+          "title": "Code Refs",
+          "type": "array"
+        },
+        "scenarios": {
+          "items": {
+            "$ref": "#/$defs/Scenario"
+          },
+          "maxItems": 16,
+          "minItems": 1,
+          "title": "Scenarios",
+          "type": "array"
+        }
+      },
+      "required": [
+        "id",
+        "statement",
+        "code_refs",
+        "scenarios"
+      ],
+      "title": "Claim",
+      "type": "object"
+    },
+    "Coupling": {
+      "additionalProperties": false,
+      "description": "A declared dependency; its witness must exercise the receiving claim.",
+      "properties": {
+        "id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "source_claim": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$",
+          "title": "Source Claim",
+          "type": "string"
+        },
+        "target_claim": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$",
+          "title": "Target Claim",
+          "type": "string"
+        },
+        "scenario_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$",
+          "title": "Scenario Id",
+          "type": "string"
+        },
+        "description": {
+          "maxLength": 2000,
+          "minLength": 1,
+          "title": "Description",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "source_claim",
+        "target_claim",
+        "scenario_id",
+        "description"
+      ],
+      "title": "Coupling",
+      "type": "object"
+    },
+    "Evidence": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "scenario_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$",
+          "title": "Scenario Id",
+          "type": "string"
+        },
+        "source_ref": {
+          "maxLength": 2000,
+          "minLength": 1,
+          "title": "Source Ref",
+          "type": "string"
+        },
+        "tool_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$",
+          "title": "Tool Id",
+          "type": "string"
+        },
+        "baseline_version": {
+          "maxLength": 2000,
+          "minLength": 1,
+          "title": "Baseline Version",
+          "type": "string"
+        },
+        "environment_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$",
+          "title": "Environment Id",
+          "type": "string"
+        },
+        "captured_at": {
+          "maxLength": 40,
+          "title": "Captured At",
+          "type": "string"
+        },
+        "content": {
+          "maxLength": 16000,
+          "minLength": 1,
+          "title": "Content",
+          "type": "string"
+        },
+        "sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "title": "Sha256",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "scenario_id",
+        "source_ref",
+        "tool_id",
+        "baseline_version",
+        "environment_id",
+        "captured_at",
+        "content",
+        "sha256"
+      ],
+      "title": "Evidence",
+      "type": "object"
+    },
+    "Scenario": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "description": {
+          "maxLength": 2000,
+          "minLength": 1,
+          "title": "Description",
+          "type": "string"
+        },
+        "mode": {
+          "enum": [
+            "positive",
+            "negative",
+            "regression"
+          ],
+          "title": "Mode",
+          "type": "string"
+        },
+        "expected": {
+          "maxLength": 2000,
+          "minLength": 1,
+          "title": "Expected",
+          "type": "string"
+        },
+        "blocking": {
+          "default": false,
+          "title": "Blocking",
+          "type": "boolean"
+        },
+        "semantic": {
+          "default": false,
+          "title": "Semantic",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "id",
+        "description",
+        "mode",
+        "expected"
+      ],
+      "title": "Scenario",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "1.0",
+      "default": "1.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "tool_id": {
+      "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$",
+      "title": "Tool Id",
+      "type": "string"
+    },
+    "baseline_version": {
+      "maxLength": 2000,
+      "minLength": 1,
+      "title": "Baseline Version",
+      "type": "string"
+    },
+    "scope": {
+      "maxLength": 2000,
+      "minLength": 1,
+      "title": "Scope",
+      "type": "string"
+    },
+    "limitations": {
+      "items": {
+        "maxLength": 2000,
+        "minLength": 1,
+        "type": "string"
+      },
+      "maxItems": 16,
+      "minItems": 1,
+      "title": "Limitations",
+      "type": "array"
+    },
+    "as_of": {
+      "maxLength": 40,
+      "title": "As Of",
+      "type": "string"
+    },
+    "environment_id": {
+      "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$",
+      "title": "Environment Id",
+      "type": "string"
+    },
+    "max_age_seconds": {
+      "default": 86400,
+      "maximum": 31536000,
+      "minimum": 1,
+      "title": "Max Age Seconds",
+      "type": "integer"
+    },
+    "claims": {
+      "items": {
+        "$ref": "#/$defs/Claim"
+      },
+      "maxItems": 32,
+      "minItems": 1,
+      "title": "Claims",
+      "type": "array"
+    },
+    "evidence": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/Evidence"
+      },
+      "maxItems": 256,
+      "title": "Evidence",
+      "type": "array"
+    },
+    "couplings": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/Coupling"
+      },
+      "maxItems": 64,
+      "title": "Couplings",
+      "type": "array"
+    }
+  },
+  "required": [
+    "tool_id",
+    "baseline_version",
+    "scope",
+    "limitations",
+    "as_of",
+    "environment_id",
+    "claims"
+  ],
+  "title": "EvaluationContract",
+  "type": "object"
+}

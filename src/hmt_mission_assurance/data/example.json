@@ -1,0 +1,56 @@
+{
+  "schema_version": "1.0",
+  "tool_id": "example-gateway",
+  "baseline_version": "demo-v1",
+  "scope": "Synthetic example: token acceptance/rejection and preservation of valid behavior.",
+  "limitations": [
+    "Illustrative synthetic records; no gateway was executed.",
+    "No general security claim."
+  ],
+  "as_of": "2026-10-18T20:00:00Z",
+  "environment_id": "synthetic-demo",
+  "max_age_seconds": 3600,
+  "claims": [
+    {
+      "id": "C-TOKEN",
+      "statement": "Valid tokens pass; invalid tokens are denied in these cases.",
+      "code_refs": [
+        "illustrative/gateway.py:authorize"
+      ],
+      "scenarios": [
+        {
+          "id": "S-VALID",
+          "description": "Valid token",
+          "mode": "positive",
+          "expected": "allowed"
+        },
+        {
+          "id": "S-INVALID",
+          "description": "Invalid token",
+          "mode": "negative",
+          "expected": "denied"
+        },
+        {
+          "id": "S-REGRESS",
+          "description": "Previously valid token still passes",
+          "mode": "regression",
+          "expected": "allowed"
+        }
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "id": "EV-0",
+      "scenario_id": "S-VALID",
+      "source_ref": "synthetic-demo:S-VALID",
+      "tool_id": "example-gateway",
+      "baseline_version": "demo-v1",
+      "environment_id": "synthetic-demo",
+      "captured_at": "2026-10-18T19:59:00Z",
+      "content": "{\"actual\":\"allowed\",\"case_id\":\"demo/S-VALID\",\"method\":\"executed\",\"producer\":\"synthetic-example-builder\",\"run_id\":\"SYNTHETIC-RUN\",\"scenario_id\":\"S-VALID\"}",
+      "sha256": "90a33e16e07affce7f49de90c2bf41cd31f553ac9462450c8f4dd56310db4133"
+    }
+  ],
+  "couplings": []
+}

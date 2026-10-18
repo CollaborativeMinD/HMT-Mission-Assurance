@@ -1,0 +1,146 @@
+{
+  "schema_version": "1.0",
+  "tool_id": "example-gateway",
+  "baseline_version": "demo-v2",
+  "scope": "Synthetic example: token acceptance/rejection and preservation of valid behavior.",
+  "limitations": [
+    "Illustrative synthetic records; no gateway was executed.",
+    "No general security claim."
+  ],
+  "as_of": "2026-10-18T20:00:00Z",
+  "environment_id": "synthetic-demo",
+  "max_age_seconds": 3600,
+  "claims": [
+    {
+      "id": "C-TOKEN",
+      "statement": "Valid tokens pass; invalid tokens are denied in these cases.",
+      "code_refs": [
+        "illustrative/gateway.py:authorize"
+      ],
+      "scenarios": [
+        {
+          "id": "S-VALID",
+          "description": "Valid token",
+          "mode": "positive",
+          "expected": "allowed"
+        },
+        {
+          "id": "S-INVALID",
+          "description": "Invalid token",
+          "mode": "negative",
+          "expected": "denied"
+        },
+        {
+          "id": "S-REGRESS",
+          "description": "Previously valid token still passes",
+          "mode": "regression",
+          "expected": "allowed"
+        }
+      ]
+    },
+    {
+      "id": "C-AUDIT",
+      "statement": "Authorization outcomes retain audit records in these cases.",
+      "code_refs": [
+        "illustrative/gateway.py:authorize"
+      ],
+      "scenarios": [
+        {
+          "id": "A-S-VALID",
+          "description": "Valid token",
+          "mode": "positive",
+          "expected": "recorded"
+        },
+        {
+          "id": "A-S-INVALID",
+          "description": "Invalid token",
+          "mode": "negative",
+          "expected": "recorded"
+        },
+        {
+          "id": "A-S-REGRESS",
+          "description": "Previously valid token still passes",
+          "mode": "regression",
+          "expected": "recorded"
+        }
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "id": "EV-0",
+      "scenario_id": "S-VALID",
+      "source_ref": "synthetic-demo:S-VALID",
+      "tool_id": "example-gateway",
+      "baseline_version": "demo-v2",
+      "environment_id": "synthetic-demo",
+      "captured_at": "2026-10-18T19:59:00Z",
+      "content": "{\"actual\":\"allowed\",\"case_id\":\"demo/S-VALID\",\"method\":\"executed\",\"producer\":\"synthetic-example-builder\",\"run_id\":\"SYNTHETIC-RUN\",\"scenario_id\":\"S-VALID\"}",
+      "sha256": "90a33e16e07affce7f49de90c2bf41cd31f553ac9462450c8f4dd56310db4133"
+    },
+    {
+      "id": "EV-1",
+      "scenario_id": "S-INVALID",
+      "source_ref": "synthetic-demo:S-INVALID",
+      "tool_id": "example-gateway",
+      "baseline_version": "demo-v2",
+      "environment_id": "synthetic-demo",
+      "captured_at": "2026-10-18T19:59:00Z",
+      "content": "{\"actual\":\"denied\",\"case_id\":\"demo/S-INVALID\",\"method\":\"executed\",\"producer\":\"synthetic-example-builder\",\"run_id\":\"SYNTHETIC-RUN\",\"scenario_id\":\"S-INVALID\"}",
+      "sha256": "3f6a6ee80daea8e5ead410c75cf3456b6c18c8780aa8827c6a21c46c099f9e89"
+    },
+    {
+      "id": "EV-2",
+      "scenario_id": "S-REGRESS",
+      "source_ref": "synthetic-demo:S-REGRESS",
+      "tool_id": "example-gateway",
+      "baseline_version": "demo-v2",
+      "environment_id": "synthetic-demo",
+      "captured_at": "2026-10-18T19:59:00Z",
+      "content": "{\"actual\":\"allowed\",\"case_id\":\"demo/S-REGRESS\",\"method\":\"executed\",\"producer\":\"synthetic-example-builder\",\"run_id\":\"SYNTHETIC-RUN\",\"scenario_id\":\"S-REGRESS\"}",
+      "sha256": "111ec6d54ecd57644741e65edd2ffe9be14e2e47007718298ba35930693cf864"
+    },
+    {
+      "id": "EV-3",
+      "scenario_id": "A-S-VALID",
+      "source_ref": "synthetic-demo:A-S-VALID",
+      "tool_id": "example-gateway",
+      "baseline_version": "demo-v2",
+      "environment_id": "synthetic-demo",
+      "captured_at": "2026-10-18T19:59:00Z",
+      "content": "{\"actual\":\"recorded\",\"case_id\":\"demo/A-S-VALID\",\"method\":\"executed\",\"producer\":\"synthetic-example-builder\",\"run_id\":\"SYNTHETIC-RUN\",\"scenario_id\":\"A-S-VALID\"}",
+      "sha256": "48807f6b28a5fa65e630d0ac30b185bc1a233780dd183b3926545da6d6723ff1"
+    },
+    {
+      "id": "EV-4",
+      "scenario_id": "A-S-INVALID",
+      "source_ref": "synthetic-demo:A-S-INVALID",
+      "tool_id": "example-gateway",
+      "baseline_version": "demo-v2",
+      "environment_id": "synthetic-demo",
+      "captured_at": "2026-10-18T19:59:00Z",
+      "content": "{\"actual\":\"recorded\",\"case_id\":\"demo/A-S-INVALID\",\"method\":\"executed\",\"producer\":\"synthetic-example-builder\",\"run_id\":\"SYNTHETIC-RUN\",\"scenario_id\":\"A-S-INVALID\"}",
+      "sha256": "33b91895883cffcaa596e9297aad2c41b0d8a0562c990b1765324eec86247a0a"
+    },
+    {
+      "id": "EV-5",
+      "scenario_id": "A-S-REGRESS",
+      "source_ref": "synthetic-demo:A-S-REGRESS",
+      "tool_id": "example-gateway",
+      "baseline_version": "demo-v2",
+      "environment_id": "synthetic-demo",
+      "captured_at": "2026-10-18T19:59:00Z",
+      "content": "{\"actual\":\"recorded\",\"case_id\":\"demo/A-S-REGRESS\",\"method\":\"executed\",\"producer\":\"synthetic-example-builder\",\"run_id\":\"SYNTHETIC-RUN\",\"scenario_id\":\"A-S-REGRESS\"}",
+      "sha256": "67a15bac552e330cff1359997055b69f2239757d5eaf96f5c1481b563f7ec1ac"
+    }
+  ],
+  "couplings": [
+    {
+      "id": "K-AUDIT",
+      "source_claim": "C-TOKEN",
+      "target_claim": "C-AUDIT",
+      "scenario_id": "A-S-INVALID",
+      "description": "Denied token outcomes reach the audit seam."
+    }
+  ]
+}
