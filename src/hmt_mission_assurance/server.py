@@ -1,6 +1,7 @@
 """Exactly four read-only tools, over stdio. No filesystem or network adapters."""
 
 import asyncio
+from collections.abc import Callable
 from typing import Any
 
 from mcp.server.lowlevel import Server
@@ -63,7 +64,9 @@ def dispatch(name: str, arguments: dict[str, Any]) -> CallToolResult:
         return error_result("INVALID_CONTRACT")
 
 
-def create_server() -> Server:
+def create_server(
+    handler: Callable[[str, dict[str, Any]], CallToolResult] = dispatch,
+) -> Server:
     server = Server("hmt-mission-assurance")
 
     @server.list_tools()
@@ -83,7 +86,7 @@ def create_server() -> Server:
 
     @server.call_tool(validate_input=False)
     async def call_tool(name: str, arguments: dict[str, Any]) -> CallToolResult:
-        return dispatch(name, arguments)
+        return handler(name, arguments)
 
     return server
 

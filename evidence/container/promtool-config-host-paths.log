@@ -1,0 +1,7 @@
+Checking /tmp/hmt-monitoring-tools/prometheus.host-check.yml
+  SUCCESS: 1 rule files found
+ SUCCESS: /tmp/hmt-monitoring-tools/prometheus.host-check.yml is valid prometheus config file syntax
+
+Checking /workspace/scratch/e418e0636bc3/mission-container/deploy/prometheus/rules.yml
+  SUCCESS: 3 rules found
+

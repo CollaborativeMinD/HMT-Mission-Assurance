@@ -1,0 +1,11 @@
+{
+  "source": "Docker Registry v2 response Docker-Content-Digest headers, 2026-11-03",
+  "platform": "multi-architecture index; runtime unqualified",
+  "images": {
+    "python:3.13-slim-bookworm": "sha256:281d39ff02e3b389401586134ff9e6572954687822a58055ec07a60ded4e0b7f",
+    "astral/uv:0.12.23": "sha256:61d393e44e249f2e4b526b6c7ddcecce245946826e608e11c93ad4f5bba55b21",
+    "prom/prometheus:v3.13.5": "sha256:aafa9d694e6a883c02db516d9f6e5b84e14195f49a2a6456a4cca815edda72b9",
+    "prom/alertmanager:v0.34.2": "sha256:39d8bb3966c694a124428a3a88fbcffd40bd069129ecd47c059f8a3f17c55f3b",
+    "grafana/grafana:13.2.4": "sha256:dbbc38ea21103cefb50396340cd88afec779c7e070b0a7bf5a75b4ce46651d3f"
+  }
+}

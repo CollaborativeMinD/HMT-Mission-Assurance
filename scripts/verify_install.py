@@ -10,23 +10,27 @@ from pathlib import Path
 
 from check_connections import check_connections
 
+from hmt_mission_assurance import __version__
+
 ROOT = Path(__file__).resolve().parents[1]
 
 
 def main() -> None:
-    wheel = ROOT / "dist/hmt_mission_assurance-0.1.1-py3-none-any.whl"
+    wheel = ROOT / f"dist/hmt_mission_assurance-{__version__}-py3-none-any.whl"
     assert wheel.is_file(), "Run uv build first"
     with tempfile.TemporaryDirectory() as directory:
         base = Path(directory)
         env = dict(os.environ, UV_TOOL_DIR=str(base / "tools"), UV_TOOL_BIN_DIR=str(base / "bin"))
         command = ["uv", "tool", "install", "--python", sys.executable, str(wheel)]
         subprocess.run(command, env=env, check=True, capture_output=True, text=True)
+        interpreter = base / "tools/hmt-mission-assurance/bin/python"
+        subprocess.run([str(interpreter), str(ROOT / "scripts/check_gateway_install.py")], check=True)
         suffix = ".exe" if sys.platform == "win32" else ""
         cli = base / "bin" / ("hmt-mission-assurance" + suffix)
         version = subprocess.run(
             [str(cli), "--version"], check=True, capture_output=True, text=True
         ).stdout.strip()
-        assert version == "0.1.1"
+        assert version == __version__
         subprocess.run(
             [str(cli), "install-skill", "--dest", str(base / "skills")], check=True, capture_output=True
         )
@@ -42,7 +46,7 @@ def main() -> None:
         connections = asyncio.run(
             check_connections(base / "bin" / ("hmt-mission-assurance-mcp" + suffix), cli, base)
         )
-        (ROOT / "evidence/connections.json").write_text(json.dumps(connections, indent=2) + "\n")
+        (ROOT / "evidence/container/connections.json").write_text(json.dumps(connections, indent=2) + "\n")
     result = {
         "status": "PASS",
         "version": version,
@@ -52,7 +56,7 @@ def main() -> None:
         "installed_html_payload": "PASS",
         "python": sys.version.split()[0],
     }
-    (ROOT / "evidence/install.json").write_text(json.dumps(result, indent=2) + "\n")
+    (ROOT / "evidence/container/install.json").write_text(json.dumps(result, indent=2) + "\n")
     print("G-INSTALL-008: PASS (isolated wheel, CLI, skill, MCP, and bundled report assets)")
 
 

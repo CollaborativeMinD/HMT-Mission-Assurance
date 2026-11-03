@@ -1,0 +1,7 @@
+Traceback (most recent call last):
+  File "/workspace/scratch/e418e0636bc3/mission-container/scripts/build_examples.py", line 143, in <module>
+    main()
+  File "/workspace/scratch/e418e0636bc3/mission-container/scripts/build_examples.py", line 135, in main
+    assert path.read_text() == content, f"Generated artifact is stale: {path.relative_to(ROOT)}"
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Generated artifact is stale: examples/before/delta-report.md

@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "uid": "hmt-mcp",
+  "title": "HMT MCP Operations",
+  "panels": [
+    {"title": "MCP scrape health", "expression": "up{job=\"hmt-mcp\"}", "legend": "{{instance}}", "unit": "short"},
+    {"title": "Tool calls per second", "expression": "sum by (tool, status) (rate(hmt_mcp_tool_calls_total[5m]))", "legend": "{{tool}} {{status}}", "unit": "ops"},
+    {"title": "Tool p95 execution time", "expression": "histogram_quantile(0.95, sum by (le, tool) (rate(hmt_mcp_tool_execution_seconds_bucket[5m])))", "legend": "{{tool}}", "unit": "s"},
+    {"title": "In-flight tool calls", "expression": "hmt_mcp_inflight", "legend": "{{instance}}", "unit": "short"},
+    {"title": "Tool error fraction", "expression": "sum by (tool) (rate(hmt_mcp_tool_calls_total{status=~\"error|exception\"}[5m])) / clamp_min(sum by (tool) (rate(hmt_mcp_tool_calls_total[5m])), 0.000001)", "legend": "{{tool}}", "unit": "percentunit"},
+    {"title": "Local firing alerts", "expression": "ALERTS{alertstate=\"firing\"}", "legend": "{{alertname}} {{tool}}", "unit": "short"}
+  ]
+}

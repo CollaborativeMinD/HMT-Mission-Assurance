@@ -1,0 +1,105 @@
+rule_files:
+  - rules.yml
+evaluation_interval: 15s
+tests:
+  - name: outage fires only after hold period
+    interval: 15s
+    input_series:
+      - series: 'up{job="hmt-mcp",instance="mcp:9000"}'
+        values: '0+0x12'
+    alert_rule_test:
+      - eval_time: 45s
+        alertname: HMTMCPUnavailable
+        exp_alerts: []
+      - eval_time: 1m
+        alertname: HMTMCPUnavailable
+        exp_alerts:
+          - exp_labels:
+              job: hmt-mcp
+              instance: mcp:9000
+              severity: critical
+            exp_annotations:
+              summary: HMT MCP metrics endpoint unavailable
+              description: Inspect the MCP container and its private metrics listener.
+  - name: healthy endpoint does not alert
+    interval: 15s
+    input_series:
+      - series: 'up{job="hmt-mcp",instance="mcp:9000"}'
+        values: '1+0x40'
+      - series: 'hmt_mcp_tool_calls_total{tool="evaluate",status="error"}'
+        values: '0+0x40'
+    alert_rule_test:
+      - eval_time: 5m
+        alertname: HMTMCPUnavailable
+        exp_alerts: []
+      - eval_time: 5m
+        alertname: HMTMCPToolFailures
+        exp_alerts: []
+  - name: repeated errors fire
+    interval: 15s
+    input_series:
+      - series: 'hmt_mcp_tool_calls_total{tool="evaluate",status="error"}'
+        values: '0+1x40'
+    alert_rule_test:
+      - eval_time: 2m
+        alertname: HMTMCPToolFailures
+        exp_alerts:
+          - exp_labels:
+              tool: evaluate
+              severity: warning
+            exp_annotations:
+              summary: HMT MCP tool failures detected
+              description: Review local tool error logs; do not transmit evidence or credentials.
+  - name: sustained slow latency fires after five minutes
+    interval: 15s
+    input_series:
+      - series: 'hmt_mcp_tool_execution_seconds_bucket{tool="evaluate",le="1"}'
+        values: '0+0x40'
+      - series: 'hmt_mcp_tool_execution_seconds_bucket{tool="evaluate",le="10"}'
+        values: '0+1x40'
+      - series: 'hmt_mcp_tool_execution_seconds_bucket{tool="evaluate",le="+Inf"}'
+        values: '0+1x40'
+    alert_rule_test:
+      - eval_time: 4m
+        alertname: HMTMCPSlowTools
+        exp_alerts: []
+      - eval_time: 6m
+        alertname: HMTMCPSlowTools
+        exp_alerts:
+          - exp_labels:
+              tool: evaluate
+              severity: warning
+            exp_annotations:
+              summary: HMT MCP tool p95 execution exceeds five seconds
+              description: Inspect input size and local resource pressure.
+  - name: healthy latency does not alert
+    interval: 15s
+    input_series:
+      - series: 'hmt_mcp_tool_execution_seconds_bucket{tool="evaluate",le="1"}'
+        values: '0+1x40'
+      - series: 'hmt_mcp_tool_execution_seconds_bucket{tool="evaluate",le="10"}'
+        values: '0+1x40'
+      - series: 'hmt_mcp_tool_execution_seconds_bucket{tool="evaluate",le="+Inf"}'
+        values: '0+1x40'
+    alert_rule_test:
+      - eval_time: 6m
+        alertname: HMTMCPSlowTools
+        exp_alerts: []
+  - name: exception-only failures fire
+    interval: 15s
+    input_series:
+      - series: 'hmt_mcp_tool_calls_total{tool="evaluate",status="exception"}'
+        values: '0+1x40'
+    alert_rule_test:
+      - eval_time: 45s
+        alertname: HMTMCPToolFailures
+        exp_alerts: []
+      - eval_time: 2m
+        alertname: HMTMCPToolFailures
+        exp_alerts:
+          - exp_labels:
+              tool: evaluate
+              severity: warning
+            exp_annotations:
+              summary: HMT MCP tool failures detected
+              description: Review local tool error logs; do not transmit evidence or credentials.

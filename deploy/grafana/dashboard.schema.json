@@ -1,0 +1,81 @@
+{
+  "$defs": {
+    "PanelSpec": {
+      "additionalProperties": false,
+      "properties": {
+        "title": {
+          "maxLength": 100,
+          "minLength": 1,
+          "title": "Title",
+          "type": "string"
+        },
+        "expression": {
+          "maxLength": 500,
+          "minLength": 1,
+          "title": "Expression",
+          "type": "string"
+        },
+        "legend": {
+          "maxLength": 100,
+          "minLength": 1,
+          "title": "Legend",
+          "type": "string"
+        },
+        "unit": {
+          "default": "short",
+          "enum": [
+            "short",
+            "ops",
+            "s",
+            "percentunit"
+          ],
+          "title": "Unit",
+          "type": "string"
+        }
+      },
+      "required": [
+        "title",
+        "expression",
+        "legend"
+      ],
+      "title": "PanelSpec",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "version": {
+      "const": 1,
+      "title": "Version",
+      "type": "integer"
+    },
+    "uid": {
+      "pattern": "^[a-zA-Z0-9_-]{1,40}$",
+      "title": "Uid",
+      "type": "string"
+    },
+    "title": {
+      "maxLength": 100,
+      "minLength": 1,
+      "title": "Title",
+      "type": "string"
+    },
+    "panels": {
+      "items": {
+        "$ref": "#/$defs/PanelSpec"
+      },
+      "maxItems": 12,
+      "minItems": 1,
+      "title": "Panels",
+      "type": "array"
+    }
+  },
+  "required": [
+    "version",
+    "uid",
+    "title",
+    "panels"
+  ],
+  "title": "DashboardSpec",
+  "type": "object"
+}
