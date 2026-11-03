@@ -4,6 +4,7 @@
 !uv.lock
 !README.md
 !SKILL.md
+!LICENSE
 !src
 !src/**
 **/__pycache__
