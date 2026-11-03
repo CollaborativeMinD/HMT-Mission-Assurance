@@ -1,0 +1,67 @@
+{
+  "version": "0.1.1",
+  "recorded_at": "2026-11-03T07:25:45.581531+00:00",
+  "status": "PASS",
+  "transport": "stdio",
+  "checks": [
+    {
+      "host": "claude-code",
+      "profile": "integrations/claude-code.mcp.json",
+      "status": "PASS",
+      "tools": [
+        "derive_requirements",
+        "emit_delta_report",
+        "evaluate_coverage",
+        "inspect_baseline"
+      ]
+    },
+    {
+      "host": "cursor",
+      "profile": "integrations/cursor.mcp.json",
+      "status": "PASS",
+      "tools": [
+        "derive_requirements",
+        "emit_delta_report",
+        "evaluate_coverage",
+        "inspect_baseline"
+      ]
+    },
+    {
+      "host": "codex-cli",
+      "profile": "integrations/codex.config.toml",
+      "status": "PASS",
+      "tools": [
+        "derive_requirements",
+        "emit_delta_report",
+        "evaluate_coverage",
+        "inspect_baseline"
+      ]
+    },
+    {
+      "host": "github-copilot-agent-mode",
+      "profile": "integrations/copilot.mcp.json",
+      "status": "PASS",
+      "tools": [
+        "derive_requirements",
+        "emit_delta_report",
+        "evaluate_coverage",
+        "inspect_baseline"
+      ]
+    }
+  ],
+  "cli": {
+    "schema_and_example": "PASS",
+    "exit_codes": [
+      0,
+      2,
+      3
+    ],
+    "report_outputs": "PASS",
+    "refuse_overwrite": "PASS"
+  },
+  "cross_call_and_restart_replay": "PASS",
+  "invalid_input_recovery": "PASS",
+  "host_ui_validation": "NOT_RUN: signed-in Claude Code, Cursor, Codex CLI, and Copilot clients unavailable",
+  "scope": "MCP SDK client launching the installed wheel using each parsed host profile; no target code executed",
+  "read_only_limit": "Empty working directories checked; not an OS sandbox or exhaustive filesystem/network trace"
+}

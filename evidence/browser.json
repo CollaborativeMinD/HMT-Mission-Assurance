@@ -1,6 +1,6 @@
 {
   "status": "PASS",
-  "browser": "156.0.8078.4",
+  "browser": "153.0.8010.0",
   "checks": [
     {
       "source": "delta-report.html",

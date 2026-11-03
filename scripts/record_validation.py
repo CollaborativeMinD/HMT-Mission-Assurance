@@ -95,6 +95,8 @@ def export_summary(connection: sqlite3.Connection) -> None:
         "browser_cases": len(browser["checks"]),
         "pytest_tests": len(cases),
         "hosted_ci": "Must be read from the corresponding GitHub Actions run; not inferred here.",
+        "connections": json.loads((ROOT / "evidence/connections.json").read_text())["status"],
+        "host_ui_validation": "NOT_RUN: host applications unavailable",
         "security_certification": False,
         "admission_authorized": False,
     }
@@ -114,20 +116,6 @@ def main() -> None:
             if gate == "G-VISUAL-007" and args.serverless:
                 command.append("--serverless")
             run_gate(connection, gate, command)
-        connection.execute(
-            'INSERT INTO "Cumulative Gate Ledger" VALUES (?,?,?,?,?,?,?,?)',
-            (
-                datetime.now(UTC).isoformat(),
-                "skill-forward-check",
-                "G-SKILL-011",
-                "REQ-CLAIMS-010",
-                "PASS",
-                "evidence/forward-skill.json",
-                sha256((ROOT / "evidence/forward-skill.json").read_text()),
-                "forward_skill: raw starter + standalone skill; correctly retained missing evidence and synthetic limits",
-            ),
-        )
-        connection.commit()
         export_summary(connection)
     print("Cumulative validation receipts and SQLite ledgers exported.")
 

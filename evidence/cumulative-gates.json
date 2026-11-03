@@ -328,5 +328,145 @@
     "evidence_ref": "evidence/forward-skill.json",
     "evidence_hash_reason": "f881c6572dd05289b2eb2cee44e4ea0c876c18c4419dc9ed12b1e0a78909e320",
     "sub_agent_task_attestation": "forward_skill: raw starter + standalone skill; correctly retained missing evidence and synthetic limits"
+  },
+  {
+    "timestamp": "2026-11-03T07:23:44.407985+00:00",
+    "task": "source-sha256:069754ca33cbe85ef10c2acbbd40c7c2289b482be253b701c1a1c28292fd1001",
+    "gate_id": "G-LINT-001",
+    "requirement": "docs/requirements.md",
+    "status": "PASS",
+    "evidence_ref": "evidence/logs/G-LINT-001-82b3e6a6c090a576.log",
+    "evidence_hash_reason": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18",
+    "sub_agent_task_attestation": "not delegated"
+  },
+  {
+    "timestamp": "2026-11-03T07:23:44.459831+00:00",
+    "task": "source-sha256:069754ca33cbe85ef10c2acbbd40c7c2289b482be253b701c1a1c28292fd1001",
+    "gate_id": "G-FORMAT-002",
+    "requirement": "docs/requirements.md",
+    "status": "PASS",
+    "evidence_ref": "evidence/logs/G-FORMAT-002-ec547b9784fec079.log",
+    "evidence_hash_reason": "ec547b9784fec079a852c1a1af13bb56a8339603c43bdd8375f459e5927a5145",
+    "sub_agent_task_attestation": "not delegated"
+  },
+  {
+    "timestamp": "2026-11-03T07:23:44.943022+00:00",
+    "task": "source-sha256:069754ca33cbe85ef10c2acbbd40c7c2289b482be253b701c1a1c28292fd1001",
+    "gate_id": "G-TYPE-003",
+    "requirement": "docs/requirements.md",
+    "status": "PASS",
+    "evidence_ref": "evidence/logs/G-TYPE-003-d9694df053a415df.log",
+    "evidence_hash_reason": "d9694df053a415df19e993bae8110fc3c5e0931ac7d7b22f4a214198aa9378f5",
+    "sub_agent_task_attestation": "not delegated"
+  },
+  {
+    "timestamp": "2026-11-03T07:23:45.233462+00:00",
+    "task": "source-sha256:069754ca33cbe85ef10c2acbbd40c7c2289b482be253b701c1a1c28292fd1001",
+    "gate_id": "G-ARCH-004",
+    "requirement": "docs/requirements.md",
+    "status": "FAIL",
+    "evidence_ref": "evidence/logs/G-ARCH-004-11401c3a7b6da933.log",
+    "evidence_hash_reason": "11401c3a7b6da933bd253d5ced922bf3b63ba42b352f0431d71dfa66d2dca16f",
+    "sub_agent_task_attestation": "not delegated"
+  },
+  {
+    "timestamp": "2026-11-03T07:25:27.748797+00:00",
+    "task": "source-sha256:354bfee0bf167803e9f5d57de5542644c80f6f3447f819ad3f181f96ff1efaea",
+    "gate_id": "G-LINT-001",
+    "requirement": "docs/requirements.md",
+    "status": "PASS",
+    "evidence_ref": "evidence/logs/G-LINT-001-82b3e6a6c090a576.log",
+    "evidence_hash_reason": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18",
+    "sub_agent_task_attestation": "not delegated"
+  },
+  {
+    "timestamp": "2026-11-03T07:25:27.780747+00:00",
+    "task": "source-sha256:354bfee0bf167803e9f5d57de5542644c80f6f3447f819ad3f181f96ff1efaea",
+    "gate_id": "G-FORMAT-002",
+    "requirement": "docs/requirements.md",
+    "status": "PASS",
+    "evidence_ref": "evidence/logs/G-FORMAT-002-85d14254773cfdca.log",
+    "evidence_hash_reason": "85d14254773cfdca3a1e4ad74b622614440354ff0acddef68ae9285b86d73891",
+    "sub_agent_task_attestation": "not delegated"
+  },
+  {
+    "timestamp": "2026-11-03T07:25:28.142026+00:00",
+    "task": "source-sha256:354bfee0bf167803e9f5d57de5542644c80f6f3447f819ad3f181f96ff1efaea",
+    "gate_id": "G-TYPE-003",
+    "requirement": "docs/requirements.md",
+    "status": "PASS",
+    "evidence_ref": "evidence/logs/G-TYPE-003-d9694df053a415df.log",
+    "evidence_hash_reason": "d9694df053a415df19e993bae8110fc3c5e0931ac7d7b22f4a214198aa9378f5",
+    "sub_agent_task_attestation": "not delegated"
+  },
+  {
+    "timestamp": "2026-11-03T07:25:28.389565+00:00",
+    "task": "source-sha256:354bfee0bf167803e9f5d57de5542644c80f6f3447f819ad3f181f96ff1efaea",
+    "gate_id": "G-ARCH-004",
+    "requirement": "docs/requirements.md",
+    "status": "PASS",
+    "evidence_ref": "evidence/logs/G-ARCH-004-b72a7153d54145d1.log",
+    "evidence_hash_reason": "b72a7153d54145d1103a43f392a80e6feff763af381a81e95a41a3aedc67130c",
+    "sub_agent_task_attestation": "not delegated"
+  },
+  {
+    "timestamp": "2026-11-03T07:25:28.615129+00:00",
+    "task": "source-sha256:354bfee0bf167803e9f5d57de5542644c80f6f3447f819ad3f181f96ff1efaea",
+    "gate_id": "G-EXAMPLE-005",
+    "requirement": "docs/requirements.md",
+    "status": "PASS",
+    "evidence_ref": "evidence/logs/G-EXAMPLE-005-73cdbe88be01bc99.log",
+    "evidence_hash_reason": "73cdbe88be01bc993b547d8a2c604d2b24dbdfdb5718887dbfec3bda784e922b",
+    "sub_agent_task_attestation": "not delegated"
+  },
+  {
+    "timestamp": "2026-11-03T07:25:31.762491+00:00",
+    "task": "source-sha256:354bfee0bf167803e9f5d57de5542644c80f6f3447f819ad3f181f96ff1efaea",
+    "gate_id": "G-TEST-006",
+    "requirement": "docs/requirements.md",
+    "status": "PASS",
+    "evidence_ref": "evidence/logs/G-TEST-006-d0254108de22a352.log",
+    "evidence_hash_reason": "d0254108de22a3526306856f180dcfbf4c5aa80f681c2d9b1bbf5d29ffbc2066",
+    "sub_agent_task_attestation": "not delegated"
+  },
+  {
+    "timestamp": "2026-11-03T07:25:38.578946+00:00",
+    "task": "source-sha256:354bfee0bf167803e9f5d57de5542644c80f6f3447f819ad3f181f96ff1efaea",
+    "gate_id": "G-VISUAL-007",
+    "requirement": "docs/requirements.md",
+    "status": "PASS",
+    "evidence_ref": "evidence/logs/G-VISUAL-007-05312aa3848ffaca.log",
+    "evidence_hash_reason": "05312aa3848ffacad7d45ff02547b220412c58eb5dca71c4dfe481bc4bfe1eaf",
+    "sub_agent_task_attestation": "not delegated"
+  },
+  {
+    "timestamp": "2026-11-03T07:25:39.796816+00:00",
+    "task": "source-sha256:354bfee0bf167803e9f5d57de5542644c80f6f3447f819ad3f181f96ff1efaea",
+    "gate_id": "G-BUILD-008",
+    "requirement": "docs/requirements.md",
+    "status": "PASS",
+    "evidence_ref": "evidence/logs/G-BUILD-008-eb73484291835311.log",
+    "evidence_hash_reason": "eb73484291835311eea8f0ad5c4ead10f2bbc4331c701a7cbb0d74129a5dc063",
+    "sub_agent_task_attestation": "not delegated"
+  },
+  {
+    "timestamp": "2026-11-03T07:25:46.551348+00:00",
+    "task": "source-sha256:354bfee0bf167803e9f5d57de5542644c80f6f3447f819ad3f181f96ff1efaea",
+    "gate_id": "G-INSTALL-009",
+    "requirement": "docs/requirements.md",
+    "status": "PASS",
+    "evidence_ref": "evidence/logs/G-INSTALL-009-0d3faaabe25b2c60.log",
+    "evidence_hash_reason": "0d3faaabe25b2c6018b00a626442d3da1823749ee242177716597b7ee280a5d8",
+    "sub_agent_task_attestation": "not delegated"
+  },
+  {
+    "timestamp": "2026-11-03T07:25:46.716716+00:00",
+    "task": "source-sha256:354bfee0bf167803e9f5d57de5542644c80f6f3447f819ad3f181f96ff1efaea",
+    "gate_id": "G-SELF-010",
+    "requirement": "docs/requirements.md",
+    "status": "PASS",
+    "evidence_ref": "evidence/logs/G-SELF-010-6cb93b63627dc1ed.log",
+    "evidence_hash_reason": "6cb93b63627dc1edefac2b2366b6690398003ad0eaea4d464fe0b3a99ba1812f",
+    "sub_agent_task_attestation": "not delegated"
   }
 ]

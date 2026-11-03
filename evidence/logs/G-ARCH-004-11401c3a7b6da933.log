@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "<repo>/scripts/check_structure.py", line 51, in <module>
+    main()
+    ~~~~^^
+  File "<repo>/scripts/check_structure.py", line 33, in main
+    assert node.end_lineno - node.lineno + 1 <= 60, f"Function too long: {path.name}:{node.name}"
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Function too long: release_manifest.py:main

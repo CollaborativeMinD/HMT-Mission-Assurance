@@ -68,5 +68,35 @@
     "validation_test": "G-INSTALL-009",
     "disposition": "INVESTIGATION_COMPLETE / SOLUTION_CANDIDATE_APPLIED",
     "sub_agent_task_attestation": "not delegated"
+  },
+  {
+    "timestamp": "2026-11-03T07:26:31.796104+00:00",
+    "incident_id": "RCA-0.1.1-PROTOCOL",
+    "checkpoint": "0.1.1",
+    "observed_state": "Initial report equality assertion failed",
+    "causal_evidence": "Report route adds full graph; compare common fields and separately assert graph; evidence/connection-release-notes.md; sha256:1e1735b8ea8a870e1d7cccee8f03d33994c1f8c7075c55fe908e841525781668",
+    "validation_test": "scripts/check_connections.py; evidence/connections.json",
+    "disposition": "Resolved within recorded local scope; signed-in host UI remains unverified",
+    "sub_agent_task_attestation": "not delegated"
+  },
+  {
+    "timestamp": "2026-11-03T07:26:31.796323+00:00",
+    "incident_id": "RCA-0.1.1-STRUCTURE",
+    "checkpoint": "0.1.1",
+    "observed_state": "G-ARCH-004 failed 60-line function limit",
+    "causal_evidence": "Extract inventory assembly from release manifest main; evidence/connection-release-notes.md; sha256:1e1735b8ea8a870e1d7cccee8f03d33994c1f8c7075c55fe908e841525781668",
+    "validation_test": "scripts/check_structure.py; evidence/cumulative-gates.json",
+    "disposition": "Resolved within recorded local scope; signed-in host UI remains unverified",
+    "sub_agent_task_attestation": "not delegated"
+  },
+  {
+    "timestamp": "2026-11-03T07:26:31.796371+00:00",
+    "incident_id": "RCA-0.1.1-BROWSER",
+    "checkpoint": "0.1.1",
+    "observed_state": "Default Playwright browser archives were invalid",
+    "causal_evidence": "Use explicit Chromium 153 binary via supported executable/serverless arguments; evidence/connection-release-notes.md; sha256:1e1735b8ea8a870e1d7cccee8f03d33994c1f8c7075c55fe908e841525781668",
+    "validation_test": "evidence/browser.json",
+    "disposition": "Resolved within recorded local scope; signed-in host UI remains unverified",
+    "sub_agent_task_attestation": "not delegated"
   }
 ]

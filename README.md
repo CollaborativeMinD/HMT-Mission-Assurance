@@ -98,12 +98,18 @@ Reproduce the screenshots with `uv run python scripts/capture_readme.py` after i
 
 ## Connect MCP
 
+For Claude Code, Cursor, Codex CLI, and GitHub Copilot Agent mode, use the
+[host-specific profiles and validation guide](docs/agent-connections.md).
+The installed-package campaign exercises all four launch profiles; signed-in
+host-client acceptance is explicitly separate.
+
 Add this server to any MCP host supporting local stdio:
 
 ```json
 {
   "mcpServers": {
     "hmt-mission-assurance": {
+      "type": "stdio",
       "command": "hmt-mission-assurance-mcp",
       "args": []
     }
@@ -176,6 +182,6 @@ uv build
 uv run python scripts/verify_install.py
 ```
 
-To regenerate the complete gate receipts and SQLite ledgers, run `uv run python scripts/record_validation.py` after installing Playwright Chromium. This reruns all gates and emits the scoped self-assessment. Run `uv run python scripts/release_manifest.py` last to classify and hash the finalized source artifacts.
+To regenerate the complete gate receipts and SQLite ledgers, run `uv run python scripts/record_validation.py` after installing Playwright Chromium. This reruns all gates and emits the scoped self-assessment. Run `uv run python scripts/release_manifest.py --baseline PRIOR_RELEASE_COMMIT` last to classify and hash the finalized source artifacts.
 
 See [Runbook.md](Runbook.md) for operator procedures and [AGENTS.md](AGENTS.md) for authority and interception rules. Apache-2.0 covers only this published repository; excluded internal materials are not licensed by implication.

@@ -45,6 +45,7 @@ def source_digest() -> str:
         ROOT / "pyproject.toml",
         ROOT / "uv.lock",
     ]
+    paths += list((ROOT / "integrations").glob("*"))
     paths += list((ROOT / "tests").glob("*.py")) + list((ROOT / "scripts").glob("*.py"))
     return sha256(canonical({str(p.relative_to(ROOT)): sha256(p.read_text()) for p in sorted(paths)}))
 
@@ -54,7 +55,7 @@ def self_contract(timestamp: str) -> EvaluationContract:
     cases = {c.attrib["name"]: c for c in root.iter("testcase")}
     raw = {
         "tool_id": "hmt-mission-assurance",
-        "baseline_version": "0.1.0+source." + source_digest()[:16],
+        "baseline_version": "0.1.1+source." + source_digest()[:16],
         "scope": "Consistency of selected actual local pytest execution records and implementation obligations.",
         "limitations": [
             "Local Python " + platform.python_version() + "; hosted CI is a separate witness.",

@@ -1,10 +1,10 @@
 {
-  "evaluator_version": "0.1.0",
-  "contract_sha256": "b00e4a6838b2be11b8c8d6c2507b592eaa5ad8e0b4c78aa057d94b540450bbc8",
+  "evaluator_version": "0.1.1",
+  "contract_sha256": "ecb9b41f73115418a0f7f8c656ea4a8bd47381392da1ec19f5a9b871453093b6",
   "tool_id": "hmt-mission-assurance",
-  "baseline_version": "0.1.0+source.fa456ec41767d5fd",
+  "baseline_version": "0.1.1+source.354bfee0bf167803",
   "scope": "Consistency of selected actual local pytest execution records and implementation obligations.",
-  "as_of": "2026-10-18T21:24:32.583023+00:00",
+  "as_of": "2026-11-03T07:25:46.688618+00:00",
   "primary_disposition": "STABLE_AS_IS",
   "reason_code": "SCOPED_WITNESSES_MATCH",
   "delta_required": false,
@@ -12,7 +12,7 @@
   "security_certification": false,
   "evidence_basis": "Consistency of caller-supplied execution records against a caller-declared contract. Hashes verify content integrity, not producer identity, execution authenticity, or truth.",
   "limitations": [
-    "Local Python 3.12.14; hosted CI is a separate witness.",
+    "Local Python 3.14.8; hosted CI is a separate witness.",
     "Producer assertions are locally generated and not independently authenticated.",
     "No whole-project security, causal improvement, or generalization claim.",
     "No independent execution or producer authentication is performed.",

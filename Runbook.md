@@ -2,7 +2,7 @@
 
 1. Install with the Git URL in README; run `hmt-mission-assurance --version`.
 2. Install the skill into your agent's skill directory. Restart/reload the agent if it caches skill discovery. The skill text is self-contained; MCP is optional.
-3. Configure the local stdio MCP command if desired. Confirm exactly four tools are discovered. Never expose this process as an unauthenticated remote service.
+3. Follow [agent connections](docs/agent-connections.md) for the host-specific stdio configuration and real-host acceptance procedure. Configure the local stdio MCP command if desired. Confirm exactly four tools are discovered. Never expose this process as an unauthenticated remote service.
 4. Name the baseline, scope, environment, UTC assessment time, claim, authority boundary, and limitations. Read authorized existing code/test/evidence artifacts. Do not execute target code through the evaluator.
 5. Build an input from `schema` and `example`; bind observations to exact scenario expectations. Redact secrets. Record unverified authenticity as a limitation.
 6. Call inspect → coverage → requirements → report, or use `evaluate contract.json --out NEW_DIRECTORY`.

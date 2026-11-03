@@ -1,9 +1,12 @@
 """Classify and hash published artifacts without copying private source material."""
 
+import argparse
 import json
+import subprocess
 from datetime import UTC, datetime
 from pathlib import Path
 
+from hmt_mission_assurance import __version__
 from hmt_mission_assurance.encoding import sha256
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -22,8 +25,7 @@ def release_files() -> list[Path]:
     )
 
 
-def main() -> None:
-    timestamp = datetime.now(UTC).isoformat()
+def inventory(baseline_files: set[str], changed: set[str], timestamp: str) -> list[dict]:
     records = []
     for path in release_files():
         relative = str(path.relative_to(ROOT))
@@ -34,7 +36,11 @@ def main() -> None:
         records.append(
             {
                 "path": relative,
-                "classification": "inherited" if relative == "LICENSE" else "new",
+                "classification": "new"
+                if relative not in baseline_files
+                else "modified"
+                if relative in changed
+                else "inherited",
                 "sha256": hashlib.sha256(path.read_bytes()).hexdigest(),
                 "size_bytes": path.stat().st_size,
                 "recorded_at": timestamp,
@@ -43,12 +49,31 @@ def main() -> None:
                 else "public-reference-implementation",
             }
         )
+    return records
+
+
+def main() -> None:
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--baseline", required=True, help="Reviewed prior release commit")
+    args = parser.parse_args()
+    baseline_files = set(
+        subprocess.check_output(
+            ["git", "ls-tree", "-r", "--name-only", args.baseline], cwd=ROOT, text=True
+        ).splitlines()
+    )
+    changed = set(
+        subprocess.check_output(
+            ["git", "diff", "--name-only", args.baseline], cwd=ROOT, text=True
+        ).splitlines()
+    )
+    timestamp = datetime.now(UTC).isoformat()
+    records = inventory(baseline_files, changed, timestamp)
     provenance = ROOT / "evidence/provenance.jsonl"
     provenance.write_text("\n".join(json.dumps(r, sort_keys=True) for r in records) + "\n")
     records.append(
         {
             "path": "evidence/provenance.jsonl",
-            "classification": "new",
+            "classification": "modified",
             "sha256": sha256(provenance.read_text()),
             "size_bytes": provenance.stat().st_size,
             "recorded_at": timestamp,
@@ -56,11 +81,12 @@ def main() -> None:
         }
     )
     manifest = {
-        "version": "0.1.0",
+        "version": __version__,
+        "baseline_commit": args.baseline,
         "recorded_at": timestamp,
         "artifacts": records,
-        "modified": [],
-        "blocked": [],
+        "modified": [r["path"] for r in records if r["classification"] == "modified"],
+        "blocked": ["Signed-in host-client acceptance is unverified; see evidence/connections.json"],
         "excluded": [
             "Internal uploads, kernels, policy corpus, and exploration are outside this repository.",
             "Build distributions and transient runtime/cache files are excluded from the source tree.",

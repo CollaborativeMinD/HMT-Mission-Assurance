@@ -1,0 +1,9 @@
+{
+  "servers": {
+    "hmt-mission-assurance": {
+      "type": "stdio",
+      "command": "hmt-mission-assurance-mcp",
+      "args": []
+    }
+  }
+}

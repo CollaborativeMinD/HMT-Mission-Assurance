@@ -1,5 +1,5 @@
 {
-  "evaluator_version": "0.1.0",
+  "evaluator_version": "0.1.1",
   "contract_sha256": "71dff9e67be04c5cff030834b9a17aebfbe784f5e10672f0065db7e275b326a6",
   "tool_id": "example-gateway",
   "baseline_version": "demo-v2",

@@ -13,4 +13,17 @@
 | REQ-INSTALL-009 | Built wheel installs through uv; CLI, single skill, MCP, and bundled report templates work outside source imports | pyproject.toml, cli.py | verify_install.py |
 | REQ-CLAIMS-010 | No outcome authorizes admission/certification; declared counts do not imply project coverage; internal artifacts excluded | results.py, SKILL.md, docs/threat-model.md | test_scoped_stability; release manifest; skill forward check |
 
+| REQ-HOST-011 | All four shipped host profiles launch the isolated installed stdio server; all tools validate, malformed calls recover, replay survives changed calls and restart; CLI exits 0/2/3 and refuses overwrite | integrations/, check_connections.py, verify_install.py | evidence/connections.json; signed-in host UI acceptance remains unverified |
+
 These are bounded reference-implementation requirements. Whole-project security, proof of execution authenticity, undeclared failure-mode discovery, causal delta measurement, and generalization remain outside the implemented claim.
+
+## 0.1.1 bounded delta
+
+Baseline: `14d519ad33cf30bb27e33b87c7d80cc4c5b6ff59` (0.1.0). The baseline
+has a generic MCP configuration and installed smoke check, but no four-host
+profile campaign. REQ-HOST-011 adds explicit configuration artifacts and installed
+protocol/CLI witnesses. No public tool schema or evidence semantics change.
+Regression obligations are all existing cumulative gates, unchanged skill bytes,
+read-only annotations, deterministic replay, and the existing CLI contracts. If
+the campaign fails, do not claim the profile validated. If a host client is absent,
+retain that unverified status; do not infer signed-in host acceptance.

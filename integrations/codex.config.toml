@@ -1,0 +1,3 @@
+[mcp_servers.hmt-mission-assurance]
+command = "hmt-mission-assurance-mcp"
+args = []

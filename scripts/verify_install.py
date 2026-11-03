@@ -8,26 +8,13 @@ import sys
 import tempfile
 from pathlib import Path
 
-from mcp import ClientSession, StdioServerParameters
-from mcp.client.stdio import stdio_client
+from check_connections import check_connections
 
 ROOT = Path(__file__).resolve().parents[1]
 
 
-async def check_installed_mcp(executable: Path, contract: dict) -> int:
-    params = StdioServerParameters(command=str(executable), args=[])
-    async with stdio_client(params) as (read, write), ClientSession(read, write) as session:
-        await session.initialize()
-        tools = (await session.list_tools()).tools
-        assert len(tools) == 4
-        response = await session.call_tool("emit_delta_report", {"contract": contract})
-        assert not response.isError and response.structuredContent
-        assert "<!doctype html>" in response.structuredContent["html"]
-    return len(tools)
-
-
 def main() -> None:
-    wheel = ROOT / "dist/hmt_mission_assurance-0.1.0-py3-none-any.whl"
+    wheel = ROOT / "dist/hmt_mission_assurance-0.1.1-py3-none-any.whl"
     assert wheel.is_file(), "Run uv build first"
     with tempfile.TemporaryDirectory() as directory:
         base = Path(directory)
@@ -39,7 +26,7 @@ def main() -> None:
         version = subprocess.run(
             [str(cli), "--version"], check=True, capture_output=True, text=True
         ).stdout.strip()
-        assert version == "0.1.0"
+        assert version == "0.1.1"
         subprocess.run(
             [str(cli), "install-skill", "--dest", str(base / "skills")], check=True, capture_output=True
         )
@@ -52,17 +39,17 @@ def main() -> None:
         )
         assert completed.returncode == 2
         assert "INSUFFICIENT_EVIDENCE" in (report / "evaluation.json").read_text()
-        contract = json.loads((ROOT / "examples/after.json").read_text())
-        count = asyncio.run(
-            check_installed_mcp(base / "bin" / ("hmt-mission-assurance-mcp" + suffix), contract)
+        connections = asyncio.run(
+            check_connections(base / "bin" / ("hmt-mission-assurance-mcp" + suffix), cli, base)
         )
+        (ROOT / "evidence/connections.json").write_text(json.dumps(connections, indent=2) + "\n")
     result = {
         "status": "PASS",
         "version": version,
         "isolated_uv_install": True,
         "skill_bytes_match": True,
-        "installed_mcp_tool_count": count,
-        "installed_html_rendering": "PASS",
+        "installed_mcp_tool_count": 4,
+        "installed_html_payload": "PASS",
         "python": sys.version.split()[0],
     }
     (ROOT / "evidence/install.json").write_text(json.dumps(result, indent=2) + "\n")
