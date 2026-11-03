@@ -34,6 +34,7 @@ def main() -> None:
             if (
                 path in production
                 and path.name != "cli.py"
+                and "hmt_mission_gateway" not in path.parts
                 and isinstance(node, (ast.Import, ast.ImportFrom))
             ):
                 modules = (

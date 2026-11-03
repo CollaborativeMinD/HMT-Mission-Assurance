@@ -1,0 +1,6 @@
+amtool, version 0.34.2 (branch: HEAD, revision: e8349048265ccc0871c3d0d668b05eacc68baf50)
+  build user:       root@bb54f2fc4768
+  build date:       20261029-09:50:10
+  go version:       go1.26.10
+  platform:         linux/amd64
+  tags:             netgo

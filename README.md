@@ -1,3 +1,8 @@
+# Container derivative: 0.1.1+container.1
+
+**HOLD_CONTAINER_RUNTIME**. New deployment instructions: [deploy/CONTAINER.md](deploy/CONTAINER.md).
+New evidence is under evidence/container. Existing release/evidence records below describe the inherited baseline, not this derivative. No hosted CI or Docker startup pass is claimed.
+
 # HMT Mission Assurance
 
 [![Verification workflow](https://github.com/CollaborativeMinD/HMT-Mission-Assurance/actions/workflows/verify.yml/badge.svg)](https://github.com/CollaborativeMinD/HMT-Mission-Assurance/actions/workflows/verify.yml)
@@ -117,7 +122,7 @@ Add this server to any MCP host supporting local stdio:
 }
 ```
 
-Use the executable's absolute path if the host does not inherit your tool directory in `PATH`. No HTTP endpoint or hosted service is included. Each tool accepts `{"contract": {...}}` and recomputes from the complete contract. There are no evaluation sessions, caches, cross-call state, credentials, or model calls.
+Use the executable's absolute path if the host does not inherit your tool directory in `PATH`. The core stdio server needs no credentials. The optional container derivative adds an authenticated local HTTP endpoint; see [container setup](deploy/CONTAINER.md). Each tool accepts `{"contract": {...}}` and recomputes from the complete contract. There are no evaluation sessions, caches, cross-call state, credentials, or model calls.
 
 | Tool | Result |
 | --- | --- |

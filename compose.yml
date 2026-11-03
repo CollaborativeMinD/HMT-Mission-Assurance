@@ -1,0 +1,83 @@
+name: hmt-mission-assurance
+x-hardening: &hardening
+  read_only: true
+  cap_drop: [ALL]
+  security_opt: [no-new-privileges:true]
+  restart: unless-stopped
+  pids_limit: 128
+  tmpfs: [/tmp:size=32m,noexec,nosuid,nodev]
+services:
+  mcp:
+    <<: *hardening
+    build: .
+    image: hmt-mission-assurance:0.1.1-container.1
+    user: "65532:65532"
+    ports: ["127.0.0.1:8000:8000"]
+    networks: [telemetry]
+    secrets: [mcp_token, metrics_token]
+    environment:
+      HMT_ALLOWED_HOSTS: '["localhost", "127.0.0.1", "mcp"]'
+    mem_limit: 512m
+    cpus: 1.0
+    healthcheck:
+      test: [CMD, python, -c, "import urllib.request; t=open('/run/secrets/mcp_token').read().strip(); r=urllib.request.Request('http://127.0.0.1:8000/health/live', headers={'Authorization':'Bearer '+t}); urllib.request.urlopen(r,timeout=3)"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+  prometheus:
+    <<: *hardening
+    image: prom/prometheus:v3.13.5@sha256:aafa9d694e6a883c02db516d9f6e5b84e14195f49a2a6456a4cca815edda72b9
+    user: "65534:65534"
+    networks: [telemetry]
+    command: [--config.file=/etc/prometheus/prometheus.yml, --storage.tsdb.path=/prometheus, --storage.tsdb.retention.time=7d, --storage.tsdb.retention.size=1GB]
+    secrets: [metrics_token]
+    volumes:
+      - ./deploy/prometheus:/etc/prometheus:ro
+      - prometheus-data:/prometheus
+    mem_limit: 512m
+    cpus: 1.0
+  alertmanager:
+    <<: *hardening
+    image: prom/alertmanager:v0.34.2@sha256:39d8bb3966c694a124428a3a88fbcffd40bd069129ecd47c059f8a3f17c55f3b
+    user: "65534:65534"
+    networks: [telemetry]
+    command: [--config.file=/etc/alertmanager/alertmanager.yml, --storage.path=/alertmanager, --cluster.listen-address=]
+    volumes:
+      - ./deploy/alertmanager:/etc/alertmanager:ro
+      - alertmanager-data:/alertmanager
+    mem_limit: 128m
+    cpus: 0.25
+  grafana:
+    <<: *hardening
+    image: grafana/grafana:13.2.4@sha256:dbbc38ea21103cefb50396340cd88afec779c7e070b0a7bf5a75b4ce46651d3f
+    user: "472:472"
+    ports: ["127.0.0.1:3000:3000"]
+    networks: [telemetry]
+    secrets: [grafana_password]
+    environment:
+      GF_SECURITY_ADMIN_PASSWORD__FILE: /run/secrets/grafana_password
+      GF_USERS_ALLOW_SIGN_UP: "false"
+      GF_AUTH_ANONYMOUS_ENABLED: "false"
+      GF_ANALYTICS_REPORTING_ENABLED: "false"
+      GF_ANALYTICS_CHECK_FOR_UPDATES: "false"
+      GF_ANALYTICS_CHECK_FOR_PLUGIN_UPDATES: "false"
+    volumes:
+      - ./deploy/grafana/provisioning:/etc/grafana/provisioning:ro
+      - ./deploy/grafana/dashboards:/var/lib/grafana/dashboards:ro
+      - grafana-data:/var/lib/grafana
+    mem_limit: 512m
+    cpus: 1.0
+networks:
+  telemetry:
+    internal: true
+volumes:
+  prometheus-data:
+  alertmanager-data:
+  grafana-data:
+secrets:
+  mcp_token:
+    file: ${HMT_SECRET_DIR:?Set HMT_SECRET_DIR}/mcp_token
+  metrics_token:
+    file: ${HMT_SECRET_DIR:?Set HMT_SECRET_DIR}/metrics_token
+  grafana_password:
+    file: ${HMT_SECRET_DIR:?Set HMT_SECRET_DIR}/grafana_password

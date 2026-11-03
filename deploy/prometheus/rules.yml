@@ -1,0 +1,27 @@
+groups:
+  - name: hmt-mcp
+    rules:
+      - alert: HMTMCPUnavailable
+        expr: up{job="hmt-mcp"} == 0
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: HMT MCP metrics endpoint unavailable
+          description: Inspect the MCP container and its private metrics listener.
+      - alert: HMTMCPToolFailures
+        expr: sum by (tool) (increase(hmt_mcp_tool_calls_total{status=~"error|exception"}[5m])) > 0
+        for: 1m
+        labels:
+          severity: warning
+        annotations:
+          summary: HMT MCP tool failures detected
+          description: Review local tool error logs; do not transmit evidence or credentials.
+      - alert: HMTMCPSlowTools
+        expr: histogram_quantile(0.95, sum by (le, tool) (rate(hmt_mcp_tool_execution_seconds_bucket[5m]))) > 5
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: HMT MCP tool p95 execution exceeds five seconds
+          description: Inspect input size and local resource pressure.

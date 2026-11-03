@@ -1,3 +1,9 @@
+## Container deployment
+
+For clone, test, image build, Compose setup, monitoring, and shutdown, follow
+[deploy/CONTAINER.md](deploy/CONTAINER.md). Docker runtime qualification remains
+HOLD until the target-machine checks are executed.
+
 # Operator SOP
 
 1. Install with the Git URL in README; run `hmt-mission-assurance --version`.

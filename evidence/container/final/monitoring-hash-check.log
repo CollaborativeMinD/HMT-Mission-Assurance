@@ -1,0 +1,10 @@
+compose.yml: OK
+deploy/prometheus/prometheus.yml: OK
+deploy/prometheus/rules.test.yml: OK
+deploy/prometheus/rules.yml: OK
+deploy/alertmanager/alertmanager.yml: OK
+deploy/grafana/provisioning/dashboards/hmt.yml: OK
+deploy/grafana/provisioning/datasources/prometheus.yml: OK
+deploy/grafana/dashboard.schema.json: OK
+deploy/grafana/dashboard.spec.json: OK
+deploy/grafana/dashboards/hmt-mcp.json: OK
