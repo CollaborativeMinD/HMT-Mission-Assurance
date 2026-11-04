@@ -7,7 +7,7 @@
 
 **Turn engineering claims and supplied execution records into a scoped, traceable assessment.**
 
-HMT Mission Assurance helps an agent determine what the available evidence supports, what remains unknown, and what must be demonstrated next. It separates observed failures from untested claims and derives requirements with measurable acceptance thresholds and regression obligations.
+The Human-Machine Team Mission Assurance skill and tools help an agent determine what the available evidence supports, what remains unknown, and what must be demonstrated next. They separate observed failures from untested claims and derive requirements with measurable acceptance thresholds and regression obligations.
 
 One agent skill. Four read-only MCP tools. A CLI that produces JSON, Markdown, and an interactive offline HTML report from the same typed evaluation contract.
 
