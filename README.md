@@ -1,8 +1,3 @@
-# Container derivative: 0.1.1+container.1
-
-**HOLD_CONTAINER_RUNTIME**. New deployment instructions: [deploy/CONTAINER.md](deploy/CONTAINER.md).
-New evidence is under evidence/container. Existing release/evidence records below describe the inherited baseline, not this derivative. No hosted CI or Docker startup pass is claimed.
-
 # HMT Mission Assurance
 
 [![Verification workflow](https://github.com/CollaborativeMinD/HMT-Mission-Assurance/actions/workflows/verify.yml/badge.svg)](https://github.com/CollaborativeMinD/HMT-Mission-Assurance/actions/workflows/verify.yml)
@@ -190,3 +185,8 @@ uv run python scripts/verify_install.py
 To regenerate the complete gate receipts and SQLite ledgers, run `uv run python scripts/record_validation.py` after installing Playwright Chromium. This reruns all gates and emits the scoped self-assessment. Run `uv run python scripts/release_manifest.py --baseline PRIOR_RELEASE_COMMIT` last to classify and hash the finalized source artifacts.
 
 See [Runbook.md](Runbook.md) for operator procedures and [AGENTS.md](AGENTS.md) for authority and interception rules. Apache-2.0 covers only this published repository; excluded internal materials are not licensed by implication.
+
+## Container derivative: 0.1.1+container.1
+
+**HOLD_CONTAINER_RUNTIME**. New deployment instructions: [deploy/CONTAINER.md](deploy/CONTAINER.md).
+New evidence is under evidence/container. Existing release/evidence records below describe the inherited baseline, not this derivative. No hosted CI or Docker startup pass is claimed.
